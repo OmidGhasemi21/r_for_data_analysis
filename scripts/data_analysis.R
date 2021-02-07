@@ -1,0 +1,296 @@
+
+
+
+library(tidyverse)
+library (here)
+library(afex)
+library(ggsci)
+library(afex)
+library("ggsci")
+library(emmeans)
+library(patchwork)
+options(scipen=999) # turn off scientific notations
+
+
+# -------------------------------------------------------- #
+# --------------- Descriptive Statistics ----------------- #
+# -------------------------------------------------------- #
+
+data_exp1_orig <- read_csv(here("cleaned_data","cleaned_data_exp1.csv"))
+
+
+data_exp1 <- data_exp1_orig%>% 
+  #mutate_if(is.character, factor) %>%
+  mutate(subject= factor(subject), # convert all characters to factor
+         group = factor(group),
+         stage = factor(stage))
+
+
+
+aggregated_data_exp1 <- data_exp1 %>%
+  group_by(stage, group) %>%
+  mutate(truth_estimate = mean(truth_estimate)) %>%
+  ungroup()
+
+
+# how many participants in total? 131
+data_exp1 %>% summarise(n= n_distinct(subject))
+
+# how many participants in each group?
+data_exp1 %>% group_by(subject) %>% filter(row_number()==1) %>% ungroup () %>% group_by(group) %>% count()
+
+# base R summary
+data_exp1 %>% 
+  group_by(subject) %>% 
+  filter(row_number()==1) %>% 
+  ungroup () %>%
+  summary()
+
+# skimr library
+data_exp1 %>% 
+  group_by(subject) %>% 
+  filter(row_number()==1) %>% 
+  ungroup () %>% 
+  dplyr::select (age, depression_score, anxiety_total, sleep_quality, life_satisfaction) %>% 
+  skimr::skim()
+
+
+narcissism_data <- read_csv(here("cleaned_data","narcissism_data.csv"))
+narcissism_data %>% skimr::skim()
+
+
+### Exercise
+
+#1: Open the dataset called `treatment_data.csv` and do a descriptive analysis:
+treatment_data <- read_csv(here("cleaned_data","treatment_data.csv"))
+treatment_data %>% skimr::skim()
+treatment_data %>% psych::describe()
+
+#2: Do the same thing for the `memory_data.csv`.
+memory_data <- read_csv(here("cleaned_data","memory_data.csv"))
+memory_data %>% group_by(time) %>%
+  skimr::skim()
+
+
+#3: Open the dataset called `ghasemi_brightness_exp4.csv` and do a descriptive analysis:
+ghasemi_data <- read_csv(here("cleaned_data","ghasemi_brightness_exp4.csv"))
+
+ghasemi_data %>% summarise(n = n_distinct(participant)) # number of participants:200
+
+ghasemi_data %>% group_by (participant) %>% 
+  filter (row_number()==1) %>% 
+  group_by (gender) %>% 
+  summarise(n= n()) %>% 
+  ungroup() # 183 female, 17 male
+
+ghasemi_data %>% dplyr::select (age, cog_ability) %>% skimr::skim() # mean and sd for age and cognitive ability
+
+
+# -------------------------------------------------------- #
+# ---------------------- Analysis ------------------------ #
+# -------------------------------------------------------- #
+
+
+############## ----------- t-test  -------------################
+
+# t.test (indep)
+t.test(anxiety~treatment, data= treatment_data)
+t.test(depression~treatment, data= treatment_data)
+t.test(life_satisfaction~treatment, data= treatment_data)
+
+
+# Is there a difference between groups at the first stage?
+data_exp1 %>% 
+  group_by(group) %>% 
+  filter(stage=='stage1') %>% 
+  ungroup () %>%
+  t.test(depression_score~group, data = ., paired=FALSE)
+
+# t.test (paired)
+t.test(memory_score~time, data= memory_data, paired= T)
+
+
+# Is there a difference between ratings of stage2 and stage4?
+data_exp1 %>% 
+  filter(stage=='stage2' | stage=='stage4') %>% 
+  ungroup () %>%
+  t.test(depression_score~stage, data = ., paired=TRUE)
+
+
+# --------- John Back Down  -----------#
+
+john_data <- read_csv(here("cleaned_data","john_backdown_exp2.csv"))
+
+
+t.test(intelligent~back_down, data = john_data, paired=FALSE)
+t.test(confident~back_down, data = john_data, paired=FALSE)
+
+
+
+############## ----------- ANOVA  -------------################
+
+
+aov_m1 <- aov_car (depression_score ~ group*stage +
+                     Error(subject/stage), data = data_exp1)  
+
+aov_m1 
+
+emmeans(aov_m1, 'group')
+emmeans(aov_m1, 'stage')
+pairs(emmeans(aov_m1, 'stage'), adjust= 'holm')
+emmeans(aov_m1, "group", by= "stage")# interaction
+update(pairs(emmeans(aov_m1, "group", by= "stage")), by = NULL, adjust = "holm") # interaction
+
+
+afex_plot(aov_m1, x = "stage", trace = "group", error='between') + theme_bw()
+
+afex_plot(aov_m1, x = "stage", trace = "group", error='between',
+          line_arg = list(size=1.3),
+          point_arg = list(size=3.5),
+          data_arg = list(size= 2, color= 'grey'),
+          data_plot = FALSE,
+          mapping = c("linetype", "shape", "color"),
+          legend_title = "Group") +
+  labs(y = "Truth Likelihhod Estimate", x = "") +
+  theme_bw()+ # remove the grey background and grid
+  theme(axis.text=element_text(size=13),
+        axis.title = element_text(size = 13),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13),
+        #legend.position=c(0.8, 0.88),
+        legend.position='bottom',
+        legend.key.size = unit(1, "cm"),
+        legend.background = element_rect(colour = 'black', fill = 'white', linetype='solid'))+
+  scale_color_nejm()
+
+afex_plot(aov_m1, x = "stage", trace = "group", error='between',
+          line_arg = list(size=1.3),
+          point_arg = list(size=3.5),
+          data_arg = list(size= 1, color= 'grey'),
+          data_geom = geom_violin,
+          mapping = c("linetype", "shape", "fill"),
+          legend_title = "Group") +
+  labs(y = "Truth Likelihhod Estimate", x = "") +
+  theme_bw()+ # remove the grey background and grid
+  theme(axis.text=element_text(size=13),
+        axis.title = element_text(size = 13),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13),
+        legend.position='bottom',
+        legend.key.size = unit(1, "cm"),
+        legend.background = element_rect(colour = 'black', fill = 'white', linetype='solid'))+
+  scale_color_d3() +
+  scale_fill_d3()
+
+
+afex_plot(aov_m1, x = "stage", trace = "group", error='between',
+          line_arg = list(size=1),
+          point_arg = list(size=3.5),
+          data_arg = list(size= 1, color= 'grey', width=.4),
+          data_geom = geom_boxplot,
+          mapping = c("linetype", "shape", "fill"),
+          legend_title = "Group") +
+  labs(y = "Truth Likelihhod Estimate", x = "") +
+  theme_bw()+ # remove the grey background and grid
+  theme(axis.text=element_text(size=13),
+        axis.title = element_text(size = 13),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13),
+        legend.position='bottom',
+        legend.key.size = unit(1, "cm"),
+        legend.background = element_rect(colour = 'black', fill = 'white', linetype='solid'))+
+  scale_color_simpsons() +
+  scale_fill_simpsons()
+
+
+# --------- Rotello Shooter Bias  -----------#
+
+# load the general data file
+rotello_data <- read_csv(here("cleaned_data","rotello_shooter_exp1.csv"))
+
+# Analyses that assume a linear ROC: ANOVA
+rotello_aov <- aov_car (resp ~ target*prime +
+                          Error(subject/target*prime), data = rotello_data)
+
+rotello_aov
+knitr::kable(nice(rotello_aov))
+
+
+
+############## ----------- Correlation  -------------################
+
+narcissism_data_cor <- narcissism_data %>%
+  select(-subject)
+#-- Base R:
+cor(narcissism_data_cor, method = "pearson",  use = "complete.obs")
+cor.test(narcissism_data_cor$psychopathy,narcissism_data_cor$self_esteem, method = "pearson",  use = "complete.obs")
+
+#-- Psych library:
+psych::pairs.panels(narcissism_data_cor, method = "pearson", hist.col = "#00AFBB",  stars = T)
+
+#-- Correlation library:
+# install.packages("devtools")
+# devtools::install_github("easystats/correlation")
+#library("correlation")
+correlation::correlation(narcissism_data_cor)
+correlation::correlation(narcissism_data_cor) %>% summary()
+
+#-- apaTables library: install.packages("apaTables",dep=T)
+narcissism_data_cor %>% 
+  apaTables::apa.cor.table(filename="./outputs/CorMatrix.doc", show.conf.interval=T)
+
+
+
+#--------- Pennycook AOTE  -----------#
+
+pennycook_data <- read_csv(here("cleaned_data","pennycook_aote_exp1.csv")) 
+
+
+# If your data contain missing values, use the following R code to handle missing values by case-wise deletion.
+cor(pennycook_data, method = "pearson",  use = "complete.obs")
+
+#library(psych)
+pennycook_data %>% 
+  psych::pairs.panels(method = "pearson", hist.col = "#00AFBB", density = T, ellipses = F, stars = T)
+
+
+correlation::correlation(pennycook_data) %>% summary()
+
+
+#library(apaTables)
+pennycook_data %>% 
+  apaTables::apa.cor.table(filename="./outputs/CorMatrix3.doc", show.conf.interval=T)
+
+
+
+###### Multiple Regression
+
+m1 <- lm(mental_health~narcissism, data= narcissism_data)
+summary(m1)
+
+m2 <- lm(mental_health~narcissism+psychopathy, data= narcissism_data)
+summary(m2)
+
+
+
+
+#--------- Trémolière Climate Literacy  -----------#
+
+Tremoliere_data <- read_csv(here("cleaned_data","tremoliere_data_exp1.csv"))
+
+
+# Multiple linear regression with variation in R square in 4 steps
+Tremoliere_reg=lm(Climato ~ Age+ Gender+ Education+ BeliefInSciencetotal+ Literacy+ Numtotal+ CognitiveReflection,
+                  data=Tremoliere_data)
+
+broom::tidy(Tremoliere_reg)
+broom::glance(Tremoliere_reg)
+
+
+
+
+
+
+
+
+

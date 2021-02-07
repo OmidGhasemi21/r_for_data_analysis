@@ -1,0 +1,1360 @@
+---
+title: "R for Data Analysis"
+author:
+  - name: "Omid Ghasemi"
+    affiliation: Macquarie University
+    email: omidreza.ghasemi@hdr.mq.edu.au
+  - name: "Mahdi Mazidi"
+    affiliation: University of Western Australia
+    email: mahdi.mazidisharafabadi@research.uwa.edu.au
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+    keep_md: yes
+    number_sections: true
+    theme: cerulean
+    code_download: true
+    #code_folding: hide
+    toc: true
+    toc_float: true
+    df_print: "kable"
+---
+
+This document is the summary of the **R for Data Analysis** workshop. 
+
+All correspondence related to this document should be addressed to: 
+
+<center>
+Omid Ghasemi (Macquarie University, Sydney, NSW, 2109, AUSTRALIA) 
+
+Email: omidreza.ghasemi@hdr.mq.edu.au 
+</center>
+
+
+
+<style>
+
+body{ /* Normal  */
+      font-size: 18px;
+      text-align: justify;
+      line-height: 1.6;
+      font-family: "Times New Roman", Times, serif;
+}
+code.r{ /* Code block */
+    font-size: 14px;
+}
+pre { /* Code block - determines code spacing between lines */
+    font-size: 12px;
+}
+
+</style>
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.align="center")
+```
+
+
+
+```{r libraries, message=FALSE, echo=F}
+# load libraries
+library(tidyverse)
+library(here)
+library(janitor)
+library(broom)
+library(afex)
+library(emmeans)
+library(knitr)
+library(kableExtra)
+library(ggsci)
+library(patchwork)
+library(skimr)
+# install.packages("devtools")
+# devtools::install_github("easystats/correlation")
+library("correlation")
+options(scipen=999) # turn off scientific notations
+options(contrasts = c('contr.sum','contr.poly')) # set the contrast sum globally 
+options(knitr.kable.NA = '')
+```
+
+
+# Introduction to R
+
+## Basics and Variables
+
+```{r echo=FALSE, out.width="700px", out.height="700px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','r_first_then.png'))
+```
+
+
+R can be used as a calculator. For mathematical purposes, be careful of the order in which R executes the commands.
+
+```{r}
+10 + 10
+
+4 ^ 2
+
+(250 / 500) * 100
+```
+
+R is a bit flexible with spacing (but no spacing in the name of variables and words)
+
+```{r}
+10+10
+
+10                 +           10
+```
+
+R can sometimes tell that you're not finished yet
+
+```{r eval=F}
+10 +
+```
+
+How to create a *variable*? Variable assignment using `<-` and `=`. Note that R is case sensitive for everything
+
+```{r}
+pay <- 250
+
+month = 12
+
+pay * month
+
+salary <- pay * month
+```
+
+
+Few points in naming variables and vectors: use short, informative words, keep same method (e.g., you can use capital letters but it is not recommended, use only _ or . ).
+
+## Function 
+Function is a set of statements combined together to perform a specific task. When we use a block of code repeatedly, we can convert it to a function. To write a function, first, you need to *define* it:
+
+```{r}
+my_multiplier <- function(a,b){
+  result = a * b
+  return (result)
+}
+```
+
+This code do nothing. To get a result, you need to *call* it:
+
+```{r}
+my_multiplier (a=2, b=4)
+# or: my_multiplier (2, 4)
+```
+
+We can set a default value for our arguments:
+
+```{r}
+my_multiplier2 <- function(a,b=4){
+  result = a * b
+  return (result)
+}
+
+my_multiplier2 (a=2)
+# or: my_multiplier (2)
+# or: my_multiplier (2, 6)
+```
+
+Fortunately, you do not need to write everything from scratch. R has lots of built-in functions that you can use:
+```{r}
+round(54.6787)
+round(54.5787, digits = 2)
+```
+
+Use `?` before the function name to get some help. For example, `?round`. You will see many functions in the rest of the workshop.
+
+## Data Types
+
+function `class()` is used to show what is the type of a variable.
+
+
+1. *Logical*: `TRUE`, `FALSE` can be abbreviated as `T`, `F`.  They has to be capital, 'true' is not a logical data:
+```{r}
+class(TRUE)
+class(F)
+```
+
+2. *Numeric*: all numbers e.g. 5,  10.5,  11,37;  a special type of numeric is "integer" which is numbers without decimal. Integers are always numeric, but numeric is not always integer:
+```{r}
+class(2)
+class(13.46)
+```
+
+3. *Character*: text for example, "I love R" or "4" or "4.5":
+```{r}
+class("ha ha ha ha")
+class("56.6")
+class("TRUE")
+```
+
+Can we change the type of data in a variable? Yes, you need to use the function `as.---()`
+
+```{r}
+as.numeric(TRUE)
+as.character(4)
+as.numeric("4.5")
+as.numeric("Hello")
+```
+
+
+## Data Structures
+
+
+###Vector 
+When there are more than one number or letter stored. Use the combine function c() for that.
+
+```{r}
+sale <- c(1, 2, 3,4, 5, 6, 7, 8, 9, 10) # also sale <- c(1:10)
+
+sale <- c(1:10)
+
+sale * sale
+```
+
+*Subsetting a vector*:
+
+```{r}
+days <- c("Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+
+days[2]
+days[-2]
+
+days[c(2, 3, 4)]
+```
+
+
+* *Exercise*: Create a vector named `my_vector` with numbers from 0 to 1000 in it and calculate mean, median, sd, min, max, and sum of that vector:
+
+```{r}
+my_vector <- (0:1000)
+
+mean(my_vector)
+median(my_vector)
+min(my_vector)
+range(my_vector)
+class(my_vector)
+sum(my_vector)
+sd(my_vector)
+```
+
+### List
+
+List allows you to gather a variety of objects under one name (that is, the name of the list) in an ordered way. These objects can be matrices, vectors, data frames, even other list.
+
+```{r}
+my_list = list(sale, 1, 3, 4:7, "HELLO", "hello", FALSE)
+my_list
+```
+
+### Factor
+Factors store the vector along with the distinct values of the elements in the vector as labels. The labels are always character irrespective of whether it is numeric or character. For example, variable gender with "male" and "female" entries:
+
+```{r}
+gender <- c("male", "male", "male", " female", "female", "female")
+gender <- factor(gender)
+```
+
+R now treats gender as a nominal (categorical) variable: 1=female, 2=male internally (alphabetically).
+```{r}
+summary(gender)
+```
+
+* *Question*: why when we ran the above function i.e. summary(), it showed three and not two levels of the data? *Hint*: run 'gender'.
+
+```{r}
+gender
+```
+
+So, be careful of spaces!
+
+* *Exercise*: Create a gender factor with 30 male and 40 females (*Hint*: use the `rep()` function):
+```{r}
+gender <- c(rep("male",30), rep("female", 40))
+gender <- factor(gender)
+gender
+```
+
+There are two types of categorical variables: nominal and ordinal. How to create ordered factors (when the variable is nominal and values can be ordered)? We should add two additional arguments to the `factor()` function: `ordered = TRUE`, and `levels = c("level1", "level2")`. For example, we have a vector that shows participants' education level.
+
+```{r}
+edu<-c(3,2,3,4,1,2,2,3,4)
+
+education<-factor(edu, ordered = TRUE)
+levels(education) <- c("Primary school","high school","College","Uni graduated")
+education
+```
+
+* *Exercise*: We have a factor with `patient` and `control` values. Here, the first level is control and the second level is patient. Change the order of levels, so patient would be the first level:
+
+```{r}
+health_status <- factor(c(rep('patient',5),rep('control',5)))
+health_status
+
+health_status_reordered <- factor(health_status, levels = c('patient','control'))
+health_status_reordered
+```
+
+Finally, can you relabel both levels to uppercase characters? (*Hint*: check `?factor`)
+
+```{r}
+health_status_relabeled <- factor(health_status, levels = c('patient','control'), labels = c('Patient','Control'))
+health_status_relabeled
+```
+
+
+### Matrices
+All columns in a matrix must have the same mode(numeric, character, etc.) and the same length. It can be created using a vector input to the matrix function.
+
+```{r}
+my_matrix = matrix(c(1,2,3,4,5,6,7,8,9), nrow = 3, ncol = 3)
+
+my_matrix
+```
+
+### Data frames 
+
+Data frames can hold numeric, character or logical values. Within a column all elements have the same data type, but different columns can be of different data type. Let's create a dataframe:
+
+```{r}
+id <- 1:200
+group <- c(rep("Psychotherapy", 100), rep("Medication", 100))
+response <- c(rnorm(100, mean = 30, sd = 5),
+             rnorm(100, mean = 25, sd = 5))
+
+my_dataframe <-data.frame(Patient = id,
+                          Treatment = group,
+                          Response = response)
+```
+
+We also could have done the below
+
+```{r}
+my_dataframe <-data.frame(Patient = c(1:200),
+                          Treatment = c(rep("Psychotherapy", 100), rep("Medication", 100)),
+                          Response = c(rnorm(100, mean = 30, sd = 5),
+                                       rnorm(100, mean = 25, sd = 5)))
+```
+
+In large data sets, the function head() enables you to show the first observations of a data frames. Similarly, the function tail() prints out the last observations in your data set.
+
+```{r eval=F}
+head(my_dataframe) 
+tail(my_dataframe)
+```
+
+```{r echo=F}
+head(my_dataframe) %>%
+  mutate(` `= c(1:6)) %>%
+  select(` `, Patient, Treatment,	Response) %>%
+  knitr::kable() %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = T)
+
+tail(my_dataframe)%>%
+  knitr::kable() %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = T)
+```
+
+Similar to vectors and matrices, brackets [] are used to selects data from rows and columns in data.frames:
+
+```{r}
+my_dataframe[35, 3]
+```
+
+* *Exercise*: How can we get all columns, but only for the first 10 participants?
+
+```{r eval=F}
+my_dataframe[1:10, ]
+```
+
+```{r echo=F}
+knitr::kable(my_dataframe[1:10, ]) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = T)
+
+```
+How to get only the Response column for all participants?
+
+```{r}
+my_dataframe[ , 3]
+```
+
+Another easier way for selecting particular items is using their names that is more helpful than number of the rows in large data sets:
+```{r eval=F}
+my_dataframe[ , "Response"]
+# OR:
+my_dataframe$Response
+
+```
+
+So far, we created dataframes using `data.frame` function from the base R. However, a better way to create dataframes is to use the `tibble` function from tidyverse (see [here](https://r4ds.had.co.nz/tibbles.html)).
+
+# Data Cleaning
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','environmental-data-science-r4ds-general.png'))
+```
+
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','cracked_setwd.png'))
+```
+
+Now, suppose we ran an experiment with 141 depressed patients. Participants were randomly assigned into two treatment groups: CBT or Psychodynamic psychotherapy. We measured self-report depression scores at 5 different stages of treatment: 
+
+- Stage 1: Before starting any treatment. It is our base stage (pre-test)
+- Stage 2: After 5 sessions of psychotherapy (post-test1)
+- Stage 3: After 10 sessions of psychotherapy (post-test2)
+- Stage 4: At the end of the treatment (post-test3)
+- Stage 5: Three months after the treatment (post-test4)
+
+let's read and check the uncleaned data. But, first thing first. let's install and then load the tidyvese package. We also need some other packages:
+
+```{r message=F, warning=F, eval=F}
+
+# Install it
+install.packages("tidyverse")
+
+# And then load it
+library(tidyverse)
+
+# Load other packages that you have already installed
+library(here)
+library(janitor)
+library(broom)
+library(afex)
+library(emmeans)
+library(knitr)
+library(kableExtra)
+library(ggsci)
+library(patchwork)
+library(skimr)
+# install.packages("devtools")
+# devtools::install_github("easystats/correlation")
+library("correlation")
+options(scipen=999) # turn off scientific notations
+options(contrasts = c('contr.sum','contr.poly')) # set the contrast sum globally 
+options(knitr.kable.NA = '')
+```
+
+```{r message=F, warning=F, eval=F}
+# read the raw data
+raw_data <- read_csv(here("raw_data","raw_data_exp1.csv"))
+head(raw_data)
+```
+
+```{r message=F, warning=F, echo=F}
+# read the raw data
+raw_data <- read_csv(here("raw_data","raw_data_exp1.csv"))
+
+knitr::kable(head(raw_data)) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = F)%>%
+  scroll_box(width = "780px")
+```
+
+* *Exercise*: There is a dataset in the `cleaned_data` folder named `unicef_u5mr.csv`. Read the dataset using `read_csv` and `here`.
+```{r message=F, warning=F}
+unicef_data <- read_csv(here("cleaned_data","unicef_u5mr.csv"))
+```
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','tidydata_3.jpg'))
+```
+
+In order to clean the data, we use *tidyverse* which is a collection of packages to work with data. One of the tidyverse packages that we use regularly is `dplyr` which includes several functions:
+
+- `mutate()` adds new variables or change existing ones.
+- `select()` pick variables (columns) based on their names.
+- `filter()` picks cases (rows) based on their values.
+- `summarise()` gives a single single summary of the data (e.g., mean, counts, etc.)
+- `arrange()` changes the ordering of the rows.
+- `group_by()` divides your dataframe into grouped dataframes and allow you to do each of the above operations (except for `arrange`) on every one of them separately.
+
+## Select
+
+Pick `subject`, `age`, and `gender` columns:
+
+```{r message=F, warning=F, eval=F}
+selected_data <- select(raw_data, subject, age, gender)
+```
+
+## Filter
+Now, do the following tasks: pick all the male participants, pick all the male participants **or** those greater than 25 years old, and finally pick all male participants **and** those greater than 25 years old:
+
+```{r message=F, warning=F, eval=F}
+# filter all males
+fil_male <- filter(raw_data, gender == "Male")
+# filter males and older than 25
+fil_male_and_g25 <- filter(raw_data, gender == "Male" & age > 25 )
+# filter males or older than 25
+fil_male_or_g25 <- filter(raw_data, gender == "Male" | age > 25 )
+```
+
+## Arrange 
+Arrange (order) your dataframe based on the age, once in an ascending order (youngers first) and once based on descending order (olders first):
+
+```{r message=F, warning=F}
+# order participants based on their age
+arranged_data <- arrange(raw_data, age)
+# order participants based on their age (descendeing)
+arranged_descending <- arrange(raw_data, desc(age))
+```
+
+## Mutate
+Create a column to show if the participant has finished the task or not:
+```{r message=F, warning=F}
+mutated_data <- mutate (raw_data, finished= case_when(progress==100~ "Yes",T~ "No"))
+```
+
+## Summarise
+Summarize participants age and sd:
+```{r message=F, warning=F}
+summarise(raw_data, mean= mean(age, na.rm=T),
+          sd= sd (age, na.rm=T))
+```
+
+## Pipe Operators
+A new function: **pipe operators** `%>%` pipes a value into the next function:
+
+```{r message=F, warning=F}
+raw_data %>% 
+  summarise(., mean= mean(age, na.rm=T),
+            sd= sd (age, na.rm=T))
+```
+
+
+```{r message=F, warning=F}
+raw_data %>% 
+  summarise(mean= mean(age, na.rm=T),
+            sd= sd (age, na.rm=T))
+```
+
+Calculate the age mean of younger than 25 participants only:
+
+```{r message=F, warning=F}
+raw_data %>% 
+  filter (age < 25) %>%
+  summarise(mean= mean(age, na.rm=T),
+            sd= sd (age, na.rm=T))
+```
+
+## Group By
+
+Calculate the age mean of younger than 25 participants  for each gender separately:
+
+```{r message=F, warning=F}
+raw_data %>% 
+  filter (age < 25) %>%
+  group_by(gender) %>%
+  summarise(mean= mean(age, na.rm=T),
+            sd= sd (age, na.rm=T)) %>%
+  ungroup ()
+```         
+
+
+* *Exercise*: Create a column to show if participant is older than 23 or not and then calculate sleep quality (`sleep_quality`) mean for each group separately:
+```{r message=F, warning=F}
+raw_data %>%
+  mutate(age_group = case_when(age > 23 ~ "greater than 23", T~ "younger than 23")) %>%
+  group_by(age_group) %>%
+  summarise(sleep_quality = mean(sleep_quality, na.rm=T))
+```     
+
+* *Exercise*: Add the anxiety total score (sum) to the dataframe and then convert subject column to factor:
+```{r message=F, warning=F}
+anxiety_data <- raw_data %>%
+  mutate(anxiety_total= anxiety1+anxiety2+anxiety3+anxiety4+anxiety5+anxiety6+anxiety7+anxiety8) %>%
+  mutate(subject= factor(subject))
+``` 
+
+## Pivoting
+
+Next, we want to pivot our data to switch between long and wide format:
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','tidydata_1.jpg'))
+```
+
+```{r message=F, warning=F}
+
+# Make you data long
+long_data <- raw_data %>%
+  select(subject, stage1_cbt:stage5_cbt,stage1_dynamic:stage5_dynamic) %>%
+  pivot_longer(cols = c(stage1_cbt:stage5_dynamic), names_to = 'stage', values_to = 'depression_score')
+
+# Make you data wide
+wide_data <- long_data %>%
+  pivot_wider(names_from = stage, values_from= depression_score)
+
+```
+
+* *Exercise*: Convert the UNICEF dataset to long and wide formats:
+```{r message=F, warning=F}
+unicef_data <- read_csv(here("cleaned_data","unicef_u5mr.csv"))
+
+library(janitor)
+unicef_data_cleaned <- unicef_data %>%
+  clean_names()
+
+unicef_long_data <- unicef_data_cleaned %>% pivot_longer(cols = c(u5mr_1950:u5mr_2015), names_to = 'year', values_to = 'u5mr')
+unicef_wideg_data <- unicef_long_data %>% pivot_wider(names_from = 'year', values_from = 'u5mr')
+```
+
+*Note*: The codes for the previous exercise were taken from [this blog post](https://sejdemyr.github.io/r-tutorials/basics/wide-and-long/) written by Simon Ejdemyr.
+
+Now, let's do some cleaning using `dplyr`, `tidyr` and other `tidyverse` libraries: 
+```{r message=F, warning=F, eval=F}
+cleaned_data <- raw_data %>% 
+  filter(progress == 100) %>% # filter out unfinished participants
+  select(-consent_form) %>% #remove some useless columns
+  # create a total score for our questionnaire
+  mutate(anxiety_total= anxiety1+anxiety2+anxiety3+anxiety4+anxiety5+anxiety6+anxiety7+anxiety8) %>%
+  select(-anxiety1:-anxiety8) %>%
+  # make our dataframe long
+  pivot_longer(cols = c(stage1_cbt:stage5_cbt,stage1_dynamic:stage5_dynamic),names_to = 'stage',values_to = 'depression_score') %>% 
+  #pivot_wider(names_from = stage, values_from= depression_score) # this code change our dataframe back to wide
+  filter(!is.na(depression_score)) %>% #remove rows with depression_score == NA
+  mutate(stage= gsub("_.*", "", stage)) %>%
+  select (subject, age, gender, group, stage, depression_score, anxiety_total, sleep_quality, life_satisfaction)
+```
+
+
+```{r message=F, warning=F, echo=F}
+cleaned_data <- raw_data %>% 
+  filter(progress == 100) %>% # filter out unfinished participants
+  select(-consent_form) %>% #remove some useless columns
+  # create a total score for our questionnaire
+  mutate(anxiety_total= anxiety1+anxiety2+anxiety3+anxiety4+anxiety5+anxiety6+anxiety7+anxiety8) %>%
+  select(-anxiety1:-anxiety8) %>%
+  # make our dataframe long
+  pivot_longer(cols = c(stage1_cbt:stage5_cbt,stage1_dynamic:stage5_dynamic),names_to = 'stage',values_to = 'depression_score') %>% 
+  #pivot_wider(names_from = stage, values_from= depression_score) # this code change our dataframe back to wide
+  filter(!is.na(depression_score)) %>% #remove rows with depression_score == NA
+  mutate(stage= gsub("_.*", "", stage)) %>%
+  select (subject, age, gender, group, stage, depression_score, anxiety_total, sleep_quality, life_satisfaction)
+
+knitr::kable(head(cleaned_data)) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = F)%>%
+  scroll_box(width = "780px")
+```
+
+Ok, now the data is clean and tidy which means:
+
+> 1. Each variable forms a column.
+2. Each observation forms a row.
+3. Each type of observational unit forms a table ([Wickham](https://vita.had.co.nz/papers/tidy-data.pdf), 2014).
+
+
+Check the dataframe and all the data types:
+```{r}
+str(cleaned_data)
+```
+
+Finally, we save our data to the `cleaned_data` folder.
+
+```{r}
+write_csv(cleaned_data, here("cleaned_data","cleaned_data_exp1.csv"))
+```
+
+
+# Data Visualization
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','ggplot2_masterpiece.png'))
+```
+
+Before starting the ggplot, let's try a visualization using a function from the Base R the plot() function shows the association of each variable against the other one in a data handy for data with few number of variables to see if there are any patterns
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+
+exam_data<- read_csv(here::here("cleaned_data", "exam_data.csv"))
+
+plot(x = exam_data$Anxiety, y = exam_data$Exam)
+
+```
+
+The code also works without writing x and y, however, writing them is strongly recommended
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+
+plot(exam_data$Anxiety, exam_data$Exam)
+```
+
+`ggplot`, the gg in ggplot stands for grammar of graphics. Grammar of graphics basically says any graphical representation of data, can be produced by a series of layers. You can think of a layer as a plastic transparency. Lets draw the same plot using ggplot. Always, mention the data we are going to work with.
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggplot(data = exam_data, aes(x = Exam, y = Anxiety))
+```
+
+
+- `aes`: aes which stands for aesthetics is a relationship between a variable in your dataset and an aspect of the plot that is going to visually convey the information to the reader
+
+- Visual elements are known as geoms (short for 'geometric objects') in ggplot 2. When we define a layer, we have to tell R what geom we want displayed on that layer (do we want a bar, line dot, etc.?)
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggplot(data = exam_data, aes(x = Exam, y = Anxiety))+ geom_point()
+```
+
+So, lets try some of them here like shape and size. Be careful with the + sign, if you clink enter for the next part of the code, the + sign should not go to the next line
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggplot(data = exam_data, aes(x = Exam, y = Anxiety))+
+  geom_point(size = 2, shape = 8)
+```
+
+The current plot is not very informative about the patterns for each gender.
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggplot(data = exam_data, aes(x = Exam, y = Anxiety, color = Gender))+
+  geom_point(size = 2, shape = 10)
+
+ggplot(data = exam_data, aes(x = Exam, y = Anxiety, color = Gender, shape = Gender))+
+  geom_point(size = 2, shape = 10)
+```
+
+Question: why the above code doesn't make any change?
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggplot(data = exam_data, aes(x = Exam, y = Anxiety, color = Gender, shape = Gender))+
+  geom_point(size = 2)
+```
+
+Can assign the first layer to a variable to reduce the length of codes for next layers.
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+My_graph <- ggplot(data = exam_data, aes(x = Exam, y = Anxiety))
+
+My_graph + geom_point()
+```
+
+lets add a line to the current graph
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+My_graph + geom_point() + geom_smooth()
+```
+
+Aesthetics can be set for all layers of the plot (i.e., defined in the plot as a whole) or can be set individually for each geom in a plot.
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+My_graph + geom_point(aes(color = Gender)) + geom_smooth()
+
+My_graph + geom_point(aes(color = Gender)) + geom_smooth(aes(color = Gender))
+```
+
+The shaded area around the line is the 95% confidence interval around the line. We can switch this off by  adding `se = F` (which is short for 'standard error = False')
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+My_graph + geom_point() + geom_smooth(se = F)
+```
+
+
+What if we want our line to be a direct line?
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+My_graph + geom_point() + geom_smooth(se = F, method = lm)
+
+```
+How to change the labels of x and y axes?
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+My_graph + geom_point() + geom_smooth(se = F, method = lm) +
+  labs(x = "Exam scores %", y = "Anxiety scores")
+```
+
+Histograms are used to show distributions of variables while bar charts are used to compare variables. Histograms plot quantitative data with ranges of the data grouped into bins or intervals while bar charts plot categorical data.
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+#ggplot(data = exam_data, aes(x = Anxiety, y = Exam )) + geom_histogram()
+# the code above gives an error as geom_histogram can only have x or y axis in its aes()
+
+ggplot(data = exam_data, aes(x = Anxiety)) + geom_histogram()
+
+ggplot(data = exam_data, aes(y = Anxiety)) + geom_histogram()
+
+ggplot(data = exam_data, aes(x = Anxiety)) + geom_histogram(bins = 31)
+
+ggplot(data = exam_data, aes(x = Anxiety)) + geom_histogram(bins = 31, fill = "green")
+
+ggplot(data = exam_data, aes(x = Anxiety)) + geom_histogram(bins = 31, fill = "green", col = "red")
+```
+
+Let's stop using the My_graph variable and write the whole code from the start again for a bar chart
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggplot(data = exam_data, aes(x = Sleep_quality))+
+  geom_bar()
+```
+Because we want to plot a summary of the data (the mean) rather than the raw scores themselves, we have to use a stat.
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggplot(data = exam_data, aes(x = Sleep_quality, y = Exam, fill = Gender))+
+  geom_bar(stat = "summary", fun = "mean")
+
+
+ggplot(data = exam_data, aes(x = Sleep_quality, y = Exam, fill = Gender))+
+  geom_bar(stat = "summary", fun = "mean", position = "dodge")
+```
+
+The other way to get the same plot that the code above gives, is using the stat_summary function that takes the following general form: `stat_summary(function = x, geom = y)`
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggplot(data = exam_data, aes(x = Sleep_quality, y = Exam, fill = Gender))+
+  stat_summary(fun = mean, geom = "bar", position = "dodge")
+```
+
+How to combine multiple plots? How to combine multiple plots? We can use the `patchwork` package. A nice tutorial on using this package can be found [here](https://patchwork.data-imaginist.com/articles/patchwork.html)
+
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','patchwork_1.jpg'))
+```
+
+```{r message=F, warning=F, dpi= 300, fig.height=5, fig.width=5}
+p1 = My_graph + geom_point(aes(color = Gender)) + geom_smooth()
+
+p2 = ggplot(data = exam_data, aes(x = Anxiety)) + geom_histogram(bins = 31)
+
+p3 = ggplot(data = exam_data, aes(x = Sleep_quality, y = Exam, fill = Gender))+
+  stat_summary(fun = mean, geom = "bar", position = "dodge")
+
+p4 = My_graph + geom_point() + geom_smooth(se = F, method = lm) +
+  labs(x = "Exam scores %", y = "Anxiety scores")
+
+combined = p1 + p2+ p3 + p4 + plot_layout(nrow = 4, byrow = F)
+
+combined
+
+p1 | p2 / p3 / p4
+
+p1 | p2 / (p3 / p4)
+```
+
+
+`ggsave()` function, which is a versatile exporting function that can export as PostScript (.eps/.ps), tex (pictex), pdf, jpeg, tiff, png, bmp, svg and wmf (in Windows only). In its basic form, the structure of the function is very simple: `ggsave(filename)`
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+ggsave(combined, filename = here("outputs", "combined.png"), dpi=300)
+```
+
+
+Now that we learned the basics of ggplot, let's draw some plot for our experiment data. First, we need to create a dataset with aggregated `depression_score` scores over `group` and `stage`. We will use this dataset for line and bar graphs.
+
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+library(ggsci)
+
+data_exp1_orig <- read_csv(here("cleaned_data","cleaned_data_exp1.csv"))
+
+data_exp1 <- data_exp1_orig%>% 
+  #mutate_if(is.character, factor) %>%
+  mutate(subject= factor(subject), # convert all characters to factor
+         group = factor(group),
+         stage = factor(stage))
+
+
+aggregated_data_exp1 <- data_exp1 %>%
+  group_by(stage, group) %>%
+  mutate(depression_score = mean(depression_score)) %>%
+  ungroup()
+
+
+barplot_exp1 <- aggregated_data_exp1 %>%
+  ggplot(aes(x=stage, y= depression_score, fill=group)) +
+  geom_bar(stat = "identity", position= "dodge")+
+  labs (x= '', y= "Depression Score") + 
+  theme_bw() + 
+  scale_fill_jama() 
+
+#ggsave(barplot_exp1, filename = here("outputs","barplot_exp1.png"), dpi=300)
+
+
+barplot_facet_exp1 <- aggregated_data_exp1 %>%
+  ggplot(aes(x=group, y= depression_score, fill=stage)) +
+  geom_bar(stat = "identity", position= "dodge")+
+  labs (x= '', y= "Depression Score") + 
+  theme_bw() + 
+  theme(legend.position = "none",
+        axis.text=element_text(size=11),
+        axis.title = element_text(size = 12)) +
+  facet_wrap(~stage, nrow = 1)+
+  scale_fill_jco() 
+
+#ggsave(barplot_facet_exp1, filename = here("outputs","barplot_facet_exp1.png"), dpi=300)
+
+
+lineplot_exp1 <- aggregated_data_exp1 %>%
+  ggplot(aes(x=factor(stage), y= depression_score, group= group, color= group)) +
+  geom_line(aes(linetype= group)) +
+  geom_point(size= 5)+
+  labs (x= '', y= "Depression Score") + 
+  theme_classic() +
+  theme(legend.position = "bottom",
+        axis.text=element_text(size=11),
+        axis.title = element_text(size = 12)) +
+  scale_color_nejm() 
+
+#ggsave(lineplot_exp1, filename = here("outputs","lineplot_exp1.png"), dpi=300)
+
+
+violinplot_exp1 <- data_exp1 %>%
+  ggplot(aes(x=factor(stage), y= depression_score, fill= group)) +
+  geom_violin()+
+  labs (x= '', y= "Depression Score") + 
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        axis.text=element_text(size=11)) +
+  scale_fill_d3() 
+
+#ggsave(violinplot_exp1, filename = here("outputs","violinplot_exp1.png"), dpi=300)
+
+
+boxplot_exp1 <- data_exp1 %>%
+  ggplot(aes(x=factor(stage), y= depression_score, fill= group)) +
+  geom_boxplot()+
+  #geom_point(position = position_dodge(width=0.75), alpha= .5)+
+  labs (x= '', y= "Depression Score") + 
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        axis.text=element_text(size=11)) +
+  scale_fill_simpsons() 
+
+#ggsave(boxplot_exp1, filename = here("outputs","boxplot_exp1.png"), dpi=300)
+
+
+boxplot_facet_exp1 <- data_exp1 %>%
+  ggplot(aes(x=factor(stage), y= depression_score, fill= group)) +
+  geom_boxplot()+
+  labs (x= '', y= "Depression Score") + 
+  theme_bw() + 
+  theme(legend.position = "bottom",
+        axis.text=element_text(size=11),
+        axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  facet_wrap(~group)+
+  scale_color_simpsons() 
+
+#ggsave(boxplot_facet_exp1, filename = here("outputs","boxplot_facet_exp1.png"), dpi=300)
+
+```
+
+Let's combine our plots:
+
+```{r dpi= 300, fig.height=7, fig.width=9}
+
+combined_plot_exp1 <- barplot_facet_exp1 / (lineplot_exp1+violinplot_exp1+boxplot_exp1)
+combined_plot_exp1
+```
+
+And here, we save our plots to the `outputs` folder.
+```{rmessage=F}
+ggsave(combined_plot_exp1, filename = here("outputs","combined_plot_exp1.png"), dpi=300, width = 12)
+```
+
+
+
+# Descriptive Statistics
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','not_normal.png'))
+```
+
+Now, let's do some descriptive statistics. Now, we can open a new script called `data_analysis.r` and read some datasets. Then we use `skimr` package to describe our data.
+
+```{r message=F, warning=F,}
+narcissism_data <- read_csv(here("cleaned_data","narcissism_data.csv"))
+narcissism_data %>% skimr::skim()
+```
+
+* *Exercise*: Open the dataset called `treatment_data.csv` and do a descriptive analysis:
+```{r message=F, warning=F}
+treatment_data <- read_csv(here("cleaned_data","treatment_data.csv"))
+treatment_data %>% skimr::skim()
+```
+
+* *Exercise*: Do the same thing for the `memory_data.csv`.
+
+```{r message=F, warning=F}
+memory_data <- read_csv(here("cleaned_data","memory_data.csv"))
+memory_data %>% group_by(time) %>%
+  skimr::skim()
+```
+
+Now, let's describe our experiment data:
+
+```{r message=F, warning=F,}
+data_exp1_orig <- read_csv(here("cleaned_data","cleaned_data_exp1.csv"))
+```
+
+How many participants in total?
+
+```{r message=F, warning=F}
+data_exp1 %>% summarise(n= n_distinct(subject))
+```
+
+
+```{r message=F, warning=F, echo=F, eval=F}
+data_exp1 %>% summarise(n= n_distinct(subject))%>%
+  knitr::kable() %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), full_width = F)
+```
+
+How many participants do we have in each group?
+```{r message=F, warning=F, eval=F}
+data_exp1 %>% 
+  group_by(subject) %>% 
+  filter(row_number()==1) %>% 
+  ungroup () %>% 
+  group_by(group) %>% 
+  count() 
+```
+
+```{r message=F, warning=F, echo=F}
+data_exp1 %>% group_by(subject) %>% filter(row_number()==1) %>% ungroup () %>% group_by(group) %>% count() %>%
+  knitr::kable() %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T)
+```
+
+Find the mean and sd for numeric variables using base R `summary` function:
+
+```{r}
+data_exp1 %>% 
+  group_by(subject) %>% 
+  filter(row_number()==1) %>% 
+  ungroup () %>%
+  summary()
+```
+
+Alternatively, we can use `skimr` library:
+```{r eval=F}
+data_exp1 %>% 
+  group_by(subject) %>% 
+  filter(row_number()==1) %>% 
+  ungroup () %>% 
+  dplyr::select (age, depression_score, anxiety_total, sleep_quality, life_satisfaction) %>% 
+  skimr::skim()
+```
+
+```{r echo=F}
+data_exp1 %>% 
+  group_by(subject) %>% 
+  filter(row_number()==1) %>% 
+  ungroup () %>% 
+  dplyr::select (age, depression_score, anxiety_total, sleep_quality, life_satisfaction) %>% 
+  skimr::skim() %>%
+  knitr::kable() %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = F)%>%
+  scroll_box(width = "780px")
+```
+
+
+* *Exercise*: For this exercise, we use a dataset of one of my own studies. In this study, we asked participants to guess the physical brightness of reasoning arguments and then we gave a cognitive ability test. (See the original study [here](https://osf.io/ebxnf/)). Open `ghasemi_brightness_exp4.csv` file and answer to the following questions:
+
+1. How many participants did we test in total?
+2. Find out how many male and female we tested.
+3. Calculate mean and sd for age and cognitive ability (`cog_ability`).
+
+
+```{r warning=F, message=F}
+ghasemi_data <- read_csv(here("cleaned_data","ghasemi_brightness_exp4.csv"))
+
+ghasemi_data %>% summarise(n = n_distinct(participant)) # number of participants:200
+
+ghasemi_data %>% group_by (participant) %>% filter (row_number()==1) %>% group_by (gender) %>% summarise(n= n()) %>% ungroup() # 183 female, 17 male
+
+ghasemi_data %>% dplyr::select (age, cog_ability) %>% skimr::skim() # mean and sd for age and cognitive ability
+```
+
+
+
+# Data Analysis
+
+## t-test
+
+Now, we use the treatment data to run three different independent t-tests. Suppose we did an experiment to compare the effectiveness of CBT vs. Psychodynamic therapies in decreasing anxiety, and depression and also in improving life satisfaction:
+
+```{r}
+# t.test (indep)
+t.test(anxiety~treatment, data= treatment_data)
+t.test(depression~treatment, data= treatment_data)
+t.test(life_satisfaction~treatment, data= treatment_data)
+```
+
+In another experiment, suppose we have created a method to boost memory. Then, we recruit some participants, do a memory pre-test, implement the method, and do a memory post-test, Now, we want to see whether our method have improved participants' memory: 
+
+```{r}
+# t.test (paired)
+t.test(memory_score~time, data= memory_data, paired= T)
+```
+
+Now that we learned about t-test, let's perform this test on our dataset. Is there a difference between groups at the first stage? Ideally, we want participants' depresion score at the first stage to be similar for both groups because we have not started our treatment yet. Previous graphs showed us that depression scores of the CBT and Psychodynamic groups at this stage are pretty close. Let's test that using an **independent t-test** (because we have 2 independent groups):
+
+```{r}
+# Is there a difference between groups at the first stage?
+data_exp1 %>% 
+  group_by(group) %>% 
+  filter(stage=='stage1') %>% 
+  ungroup () %>%
+  t.test(depression_score~group, data = ., paired=FALSE)
+```
+
+Now, we wonder if psychotherapy treatments were effective at all, regardless of the treatment method. So, we would like to test if depresion score at the forth stage are lower than scores at the stage 2? Since a pair of score at stage 2 and stage 4 is coming from a same person, we use **paired t-test**.
+
+```{r}
+# Is there a difference between ratings of stage2 and stage4?
+data_exp1 %>% 
+  filter(stage=='stage2' | stage=='stage4') %>% 
+  ungroup () %>%
+  t.test(depression_score~stage, data = ., paired=TRUE)
+```
+
+
+* *Exercise*: John et al. (2019) investigated the consequences of backing down (changing one's mind in lights of evidence)and how other people view someone who change their mind. In their second experiments, they presented participants either with a person who changes their mind or a person who refuses to back down. Then, they asked participants to rate how intelligent and confident the person is (See the original study [here](https://www.hbs.edu/faculty/Publication%20Files/John%20et%20al%20-%20self-presentational%20consequences_b85b2c43-a5b5-474c-9e2c-e9853b10727e.pdf)). They reported that: 
+
+> "Relative to the entrepreneur who did not back down, participants judged the entrepreneur who backed down as more intelligent (M_backed_down=5.13 out of 7, SD=1.09; M_did_not_back_down=3.97, SD=1.54; t(271.12)=−7.59, p < .001) but less confident (M_backed_down=4.50 out of 7, SD=1.36; M_did_not_back_down=5.65, SD=1.10; t(291.01)=8.08, p < .001).".
+
+Open the `john_backdown_exp2.csv` file and try to reproduce their results. Run two separate independent t-test, one with `intelligent` as the dependent variable and one with `confident` as the dependent variable. For both t-test, use `back_down` as the between-subject independent variable.
+
+```{r message=F, warning=F}
+john_data <- read_csv(here("cleaned_data","john_backdown_exp2.csv"))
+
+
+t.test(intelligent~back_down, data = john_data, paired=FALSE)
+t.test(confident~back_down, data = john_data, paired=FALSE)
+```
+
+
+## Analysis of Variance (ANOVA)
+
+Now, let's analysis our main experiment data: Do participants in the CBT group show better outcome compared to participants in the Psychodynamic group? Suppose we believe that participants should show lower depression after 5 or 10 sessions of both psychotherapy treatments and this decrease should be more pronounced for CBT than psychodynamic psychotherapy. If this is the case. we expect an interaction in the traditional **Analysis of Variance (AONVA)** test.
+
+```{r message=F, warning=F}
+aov_m1 <- aov_car (depression_score ~ group*stage +
+                     Error(subject/stage), data = data_exp1)  
+```
+
+```{r echo=F}
+knitr::kable(nice(aov_m1)) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = T)
+```
+
+As you can see, we found a significant main effect of stage and a significant group by stage interaction. We can use the `emmeans` package to do post-hoc tests.
+
+```{r warning=F, message=F}
+# main effect of stage
+emmeans(aov_m1, 'stage')
+pairs(emmeans(aov_m1, 'stage'), adjust= 'holm')
+```
+
+
+```{r warning=F, message=F}
+# group by stage interaction
+emmeans(aov_m1, "group", by= "stage")
+update(pairs(emmeans(aov_m1, "group", by= "stage")), by = NULL, adjust = "holm") 
+```
+
+You can use the `afex_plot` function from afex to create beautiful plots. Those plots interacts nicely with ggplot:
+```{r message=F, warning=F, dpi= 300}
+afex_plot(aov_m1, x = "stage", trace = "group", error='between',
+          line_arg = list(size=1),
+          point_arg = list(size=3.5),
+          data_arg = list(size= 1, color= 'grey', width=.4),
+          data_geom = geom_boxplot,
+          mapping = c("linetype", "shape", "fill"),
+          legend_title = "Group") +
+  labs(y = "Depression Score", x = "") +
+  theme_bw()+ # remove the grey background and grid
+  theme(axis.text=element_text(size=13),
+        axis.title = element_text(size = 13),
+        legend.text=element_text(size=13),
+        legend.title=element_text(size=13),
+        legend.position='bottom',
+        legend.key.size = unit(1, "cm"),
+        legend.background = element_rect(colour = 'black', fill = 'white', linetype='solid'))+
+  scale_color_simpsons() +
+  scale_fill_simpsons()
+```
+
+
+If you are interested in this topic, check out this nice tutorial about [using afex to run ANOVA](https://cran.r-project.org/web/packages/afex/vignettes/afex_anova_example.html), and also this interesting tutorial on the [emmeans package](https://aosmith.rbind.io/2019/03/25/getting-started-with-emmeans/).
+
+* *Exercise*: Rotello et al. (2018) investigated the association between the race (White vs. Black faces) and the gun-tool judgments. In their first experiments, they presented participants with 16 White male faces and 16 Black male faces, and following that 8 images of guns and 8 images of tools. They asked participants to judge if the object is a tool or a gun by pressing keyboard buttons. Then, they ran an ANOVA to see if participants' gun responses are higher for any of the races. So, they included prime race (Black, White) and target identity (gun, tool) as independent variables and participants' gun responses as dependent variable into their linear model (See the original study [here](https://online.ucpress.edu/collabra/article/4/1/32/112986/The-Shape-of-ROC-Curves-in-Shooter-Tasks)). They found that: 
+
+> "Participants made more gun responses to guns than to tools, F(1,45) = 53243, p < 0.0001, η2g = 0.998. However, the race of the prime face did not matter, F(1,45) = 0.287, p > 0.59, η2g = 0.001, nor was there an interaction of prime race with target object, F(1,45) = 0.022, p > 0.88, η2g = 0.000)".
+
+Open the `rotello_shooter_exp1.csv` file and try to reproduce their results. Run an ANOVA (type III) with `resp` as the dependent variable and target, prime, and their interaction as independent variables.
+
+
+```{r message=F, warning=F}
+# load the general data file
+rotello_data <- read_csv(here("cleaned_data","rotello_shooter_exp1.csv"))
+
+# ANOVA
+rotello_aov <- aov_car (resp ~ target*prime +
+           Error(subject/target*prime), data = rotello_data)
+```
+
+```{r echo=F}
+knitr::kable(nice(rotello_aov)) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = T)
+```
+
+
+
+## Correlation
+
+Here, we want to check the correlation between variables on the `narcissism_data`. First, we need to remove `subject` column because it is not numeric:
+```{r message=F, warning=F}
+narcissism_data_cor <- narcissism_data %>%
+  select(-subject)
+```
+
+```{r message=F, eval=F, fig.align='center', dpi=300}
+
+#-- Base R:
+cor(narcissism_data_cor, method = "pearson",  use = "complete.obs")
+
+#-- Psych library:
+psych::pairs.panels(narcissism_data_cor, method = "pearson", hist.col = "#00AFBB", density = T, ellipses = F, stars = T)
+
+#-- Correlation library:
+# install.packages("devtools")
+# devtools::install_github("easystats/correlation")
+#library("correlation")
+correlation::correlation(narcissism_data_cor) %>% summary()
+
+#-- apaTables library:
+narcissism_data_cor %>% 
+  apaTables::apa.cor.table(filename="./outputs/CorMatrix.doc", show.conf.interval=T)
+```
+
+```{r message=F, echo=F, fig.align='center', dpi=300}
+
+#-- Base R:
+cor(narcissism_data_cor, method = "pearson",  use = "complete.obs")%>%
+  knitr::kable(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = F)
+
+#-- Psych library:
+psych::pairs.panels(narcissism_data_cor, method = "pearson", hist.col = "#00AFBB", density = T, ellipses = F, stars = T)
+
+#-- Correlation library:
+# install.packages("devtools")
+# devtools::install_github("easystats/correlation")
+#library("correlation")
+correlation::correlation(narcissism_data_cor) %>% summary()%>%
+  knitr::kable(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = F)
+
+```
+
+
+* *Exercise*: Pennycook et al. (2020) investigated the relationship between actively open-minded thinking style about evidence (AOT-E) and different political, scientific, and religious beliefs (see the original paper [here](https://psyarxiv.com/a7k96)). In their first experiment, they calculated the correlation of AOTE and scientific beliefs items (global warming, evolution, etc.) and they found the following results:
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "adapted from [Pennycook et al. (2020)](https://psyarxiv.com/a7k96)"}
+knitr::include_graphics(here('inputs','pennycook_corr.png'))
+```
+
+Open the `pennycook_aote_exp1.csv` file and try to reproduce their results by creating the same correlation matrix.
+
+```{r message=F, eval=F}
+pennycook_data <- read_csv(here("cleaned_data","pennycook_aote_exp1.csv")) 
+
+
+#---------- Base R:
+cor(pennycook_data, method = "pearson",  use = "complete.obs")
+
+#---------- Psych library:
+pennycook_data %>% 
+  psych::pairs.panels(method = "pearson", hist.col = "#00AFBB", density = T, ellipses = F, stars = T)
+
+#---------- Correlation library:
+correlation::correlation(pennycook_data) %>% summary()
+
+#---------- apaTables library:
+pennycook_data %>% 
+  apaTables::apa.cor.table(filename="./outputs/CorMatrix.doc", show.conf.interval=T)
+```
+
+
+```{r message=F, eval=T, echo=F, fig.align='center', dpi=300}
+pennycook_data <- read_csv(here("cleaned_data","pennycook_aote_exp1.csv")) %>%
+  clean_names()
+
+correlation::correlation(pennycook_data) %>% summary() %>%
+  knitr::kable(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = F)%>%
+  scroll_box(width = "780px")
+
+```
+
+
+## Linear Regression
+
+Here, we do single and multiple linear regreassion on the `narcissism_data`:
+
+```{r}
+m1 <- lm(mental_health~narcissism, data= narcissism_data)
+```
+
+```{r message=F, eval=T, echo=F, fig.align='center', dpi=300}
+broom::tidy(m1)%>%
+  knitr::kable(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = T)
+```
+
+```{r}
+m2 <- lm(mental_health~narcissism+psychopathy, data= narcissism_data)
+```
+
+```{r message=F, eval=T, echo=F, fig.align='center', dpi=300}
+broom::tidy(m2)%>%
+  knitr::kable(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = T)
+```
+
+* *Exercise*: Trémolière and Djeriouat (2020) examined the role of *cognitive reflection* and *belief in science* in climate change skepticism. In their first study, they revealed that cognitive reflection and belief in science negetively predicted climate change skepticism even after controlling for demographic and cognitive ability variables (see the original paper [here](https://psyarxiv.com/vp8k6/)). 
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "adapted from [Trémolière and Djeriouat (2020)](https://psyarxiv.com/vp8k6/)"}
+knitr::include_graphics(here('inputs','tremoliere_reg.png'))
+```
+
+Open the `tremoliere_data_exp1.csv` file and try to reproduce their results by running a multiple linear regression. Enter age, gender, education, belief in science, literacy, numeracy (Numtotal), and cognitive reflection as predictors and enter climate change skepticism (climato) as the outcome variable.
+
+```{r message=F}
+Tremoliere_data <- read_csv(here("cleaned_data","tremoliere_data_exp1.csv"))
+
+Tremoliere_reg=lm(Climato ~ Age+ Gender+ Education+ BeliefInSciencetotal+ Literacy+ Numtotal+ CognitiveReflection,
+                    data=Tremoliere_data)
+```
+
+
+```{r message=F, eval=T, echo=F, fig.align='center', dpi=300}
+broom::tidy(Tremoliere_reg)%>%
+  knitr::kable(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = T)
+
+glance(Tremoliere_reg)%>%
+  knitr::kable(digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "bordered", "condensed"), fixed_thead = T, full_width = F)%>%
+  scroll_box(width = "780px")
+```
+
+
+# Rmarkdown
+
+To be completed...
+
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','rmarkdown_wizards.png'))
+```
+
+
+```{r echo=FALSE, out.width="700px", out.height="350px", fig.cap= "Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations"}
+knitr::include_graphics(here('inputs','reproducibility_court.png'))
+```
+
+# References
+
+- Ghasemi, O., Handley, S., & Howarth, S. (2020). The Bright Homunculus in our Head: Individual Differences in Intuitive Sensitivity to Logical Validity.
+
+- John, L. K., Jeong, M., Gino, F., & Huang, L. (2019). The self-presentational consequences of upholding one’s stance in spite of the evidence. Organizational Behavior and Human Decision Processes, 154, 1-14.
+
+- Pennycook, G., Cheyne, J. A., Koehler, D. J., & Fugelsang, J. A. (2020). On the belief that beliefs should change according to evidence: Implications for conspiratorial, moral, paranormal, political, religious, and science beliefs. Judgment and Decision Making, 15(4), 476.
+
+- Rotello, C. M., Kelly, L. J., Heit, E., Vazire, S., & Vul, E. (2018). The Shape of ROC Curves in Shooter Tasks: Implications for Best Practices in Analysis. Collabra: Psychology, 4(1).
+
+- Trémolière, B., & Djeriouat, H. (2020). Don’t you see that its cold! Exploring the roles of cognitive reflection, climate science literacy, illusion of knowledge, and political orientation in climate change skepticism.
+
+- Wickham, H. (2014). Tidy data. Journal of Statistical Software, 59(10), 1-23.
