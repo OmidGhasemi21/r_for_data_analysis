@@ -25,7 +25,7 @@ A summary of the workshop (including all the codes in a markdown format) can be 
 <hr>
 <br>
 
-![Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations](inputs/monster_support.jpg)
+![Artwork by Allison Horst: https://github.com/allisonhorst/stats-illustrations](inputs/splash-training.jpg)
 
 <center>
 

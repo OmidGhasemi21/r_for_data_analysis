@@ -7,7 +7,7 @@ author:
   - name: "Mahdi Mazidi"
     affiliation: University of Western Australia
     email: mahdi.mazidisharafabadi@research.uwa.edu.au
-date: "07 February, 2021"
+date: "12 February, 2021"
 output: 
   html_document:
     keep_md: yes
@@ -35,9 +35,7 @@ Email: omidreza.ghasemi@hdr.mq.edu.au
 <style>
 
 body{ /* Normal  */
-      font-size: 18px;
       text-align: justify;
-      line-height: 1.6;
       font-family: "Times New Roman", Times, serif;
 }
 code.r{ /* Code block */
@@ -319,7 +317,8 @@ as.numeric("Hello")
 ## Data Structures
 
 
-###Vector 
+### Vector 
+
 When there are more than one number or letter stored. Use the combine function c() for that.
 
 
@@ -634,37 +633,37 @@ tail(my_dataframe)
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 34.96260 </td>
+   <td style="text-align:right;"> 19.45338 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.64657 </td>
+   <td style="text-align:right;"> 42.34821 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.42481 </td>
+   <td style="text-align:right;"> 35.61285 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 25.43197 </td>
+   <td style="text-align:right;"> 25.17399 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.61577 </td>
+   <td style="text-align:right;"> 24.42101 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 24.99077 </td>
+   <td style="text-align:right;"> 27.48738 </td>
   </tr>
 </tbody>
 </table>
@@ -683,37 +682,37 @@ tail(my_dataframe)
    <td style="text-align:left;"> 195 </td>
    <td style="text-align:right;"> 195 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 27.30616 </td>
+   <td style="text-align:right;"> 27.49956 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 196 </td>
    <td style="text-align:right;"> 196 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 23.06917 </td>
+   <td style="text-align:right;"> 28.42176 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 197 </td>
    <td style="text-align:right;"> 197 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 27.53152 </td>
+   <td style="text-align:right;"> 28.92391 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 198 </td>
    <td style="text-align:right;"> 198 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 19.11493 </td>
+   <td style="text-align:right;"> 29.06204 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 199 </td>
    <td style="text-align:right;"> 199 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 16.60061 </td>
+   <td style="text-align:right;"> 27.61078 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 200 </td>
    <td style="text-align:right;"> 200 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 29.49956 </td>
+   <td style="text-align:right;"> 18.95131 </td>
   </tr>
 </tbody>
 </table>
@@ -726,7 +725,7 @@ my_dataframe[35, 3]
 ```
 
 ```
-## [1] 25.46674
+## [1] 31.15347
 ```
 
 * *Exercise*: How can we get all columns, but only for the first 10 participants?
@@ -748,52 +747,52 @@ my_dataframe[1:10, ]
   <tr>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 34.96260 </td>
+   <td style="text-align:right;"> 19.45338 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.64657 </td>
+   <td style="text-align:right;"> 42.34821 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.42481 </td>
+   <td style="text-align:right;"> 35.61285 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 25.43197 </td>
+   <td style="text-align:right;"> 25.17399 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.61577 </td>
+   <td style="text-align:right;"> 24.42101 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 24.99077 </td>
+   <td style="text-align:right;"> 27.48738 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 24.38427 </td>
+   <td style="text-align:right;"> 33.11080 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 25.79177 </td>
+   <td style="text-align:right;"> 42.36993 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 9 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 38.67245 </td>
+   <td style="text-align:right;"> 40.41996 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 10 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 29.08975 </td>
+   <td style="text-align:right;"> 23.41229 </td>
   </tr>
 </tbody>
 </table>
@@ -805,31 +804,31 @@ my_dataframe[ , 3]
 ```
 
 ```
-##   [1] 34.96260 31.64657 31.42481 25.43197 30.61577 24.99077 24.38427 25.79177
-##   [9] 38.67245 29.08975 26.50346 32.45890 25.38949 29.21747 32.84061 38.82994
-##  [17] 29.85224 29.54578 30.84349 30.83514 18.97348 28.97147 38.96407 37.99054
-##  [25] 29.02186 25.08161 33.75379 28.48740 30.57279 25.52159 30.03123 23.41081
-##  [33] 28.12926 22.78142 25.46674 36.18784 33.01753 27.74373 29.74098 30.20330
-##  [41] 29.92995 32.94010 40.79224 36.81551 27.13167 27.63639 26.61317 30.40545
-##  [49] 31.03785 34.30708 23.70042 32.45592 31.49774 31.74705 28.77679 34.88093
-##  [57] 26.54407 26.61226 35.94736 29.92079 29.61376 38.78326 26.69423 24.48900
-##  [65] 27.64699 26.76344 27.67637 23.96007 31.19174 23.39417 35.35022 27.59655
-##  [73] 30.83045 34.74902 33.38851 35.21690 39.41601 31.79024 37.49004 21.51096
-##  [81] 21.89162 20.60157 36.45890 29.56125 28.96662 30.09829 25.55787 26.78051
-##  [89] 30.89210 26.76469 29.76614 28.95641 31.50727 43.91029 28.75246 24.85764
-##  [97] 29.84467 29.89428 26.33818 34.06545 25.56559 16.97324 21.13960 26.02983
-## [105] 24.82091 16.76352 21.88050 24.02214 22.90504 26.95942 22.01723 19.48741
-## [113] 28.81998 22.95709 31.45071 31.36137 22.83711 18.04427 24.49852 22.97583
-## [121] 16.35870 19.90071 35.51241 30.02796 22.32228 22.57951 25.18171 27.55821
-## [129] 30.33464 21.47439 21.22207 28.31029 27.43622 27.16737 23.91594 20.91610
-## [137] 29.50764 16.38556 24.00856 23.30033 24.19752 25.03772 23.84564 15.86221
-## [145] 18.88769 29.20390 22.57849 21.08188 21.75392 16.57595 20.59390 26.39006
-## [153] 24.39367 26.56404 27.32385 25.49716 28.43724 20.55394 31.22679 19.45794
-## [161] 13.23348 32.51918 26.37662 23.44986 29.58656 34.81423 24.71990 21.96679
-## [169] 21.53439 32.79687 31.27792 21.36931 29.99414 25.87782 23.80425 19.44767
-## [177] 26.15893 21.80083 20.95385 30.22909 24.62255 22.27265 29.65765 11.75282
-## [185] 24.66539 23.07453 25.09461 26.28304 20.69232 26.80548 24.25434 16.25224
-## [193] 23.13111 22.90094 27.30616 23.06917 27.53152 19.11493 16.60061 29.49956
+##   [1] 19.45338 42.34821 35.61285 25.17399 24.42101 27.48738 33.11080 42.36993
+##   [9] 40.41996 23.41229 28.24108 32.81045 25.70502 29.22300 32.27024 33.05726
+##  [17] 24.37990 31.37091 31.16245 28.76672 38.54995 22.87417 22.20308 23.74506
+##  [25] 25.12223 38.02695 28.44873 30.55478 36.07095 29.76718 37.62122 33.47683
+##  [33] 32.37533 31.40624 31.15347 34.65073 22.47355 27.59239 35.01169 36.09953
+##  [41] 29.29690 32.29629 31.98906 23.27326 27.44773 31.86654 17.90334 22.97421
+##  [49] 30.87948 29.53606 29.08800 30.08908 21.95537 35.25648 30.40872 30.87351
+##  [57] 23.57119 29.42636 32.90266 31.78335 35.53556 27.94127 28.05376 21.32260
+##  [65] 25.00423 19.52317 37.05042 29.95080 21.99706 26.90433 22.47090 31.14327
+##  [73] 40.54168 27.98746 28.14105 31.15181 30.93725 30.65365 23.85351 32.85104
+##  [81] 33.16058 32.15789 24.70513 24.71835 29.07822 29.34360 29.97579 24.19834
+##  [89] 27.12373 29.85477 27.23954 31.12225 31.72837 30.66292 28.12180 29.38940
+##  [97] 35.45928 35.13103 23.55602 21.51178 23.86999 24.08943 21.19567 23.76538
+## [105] 31.23768 20.12949 23.35748 25.77560 19.97935 36.95775 33.83174 27.06497
+## [113] 20.82996 16.90353 20.63556 22.35301 20.31938 28.19941 31.16086 14.80019
+## [121] 30.02522 28.20146 24.90908 17.37278 30.53754 25.74269 24.67774 19.84581
+## [129] 15.30539 24.30986 12.59414 21.31042 18.77066 25.84767 28.36952 18.72623
+## [137] 26.18819 16.69716 22.39854 23.14091 24.53845 29.56114 18.33816 30.06442
+## [145] 26.48275 21.59022 19.16012 27.35389 21.63158 18.79327 20.71436 20.73652
+## [153] 30.98289 29.92019 21.84922 24.98820 25.63485 28.40387 28.10618 27.49502
+## [161] 22.00292 31.93532 20.70760 26.42307 30.18167 15.52820 21.29023 19.23984
+## [169] 19.23642 20.05807 25.03167 31.89290 26.70301 23.68235 20.84122 17.86026
+## [177] 33.32782 30.41839 25.10713 23.05902 22.40902 27.36197 24.81034 22.85248
+## [185] 22.74278 20.66957 22.41073 19.05380 26.37348 24.48729 30.65553 26.59533
+## [193] 30.89649 20.92523 27.49956 28.42176 28.92391 29.06204 27.61078 18.95131
 ```
 
 Another easier way for selecting particular items is using their names that is more helpful than number of the rows in large data sets:

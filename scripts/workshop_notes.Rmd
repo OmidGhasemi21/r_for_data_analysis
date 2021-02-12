@@ -35,9 +35,7 @@ Email: omidreza.ghasemi@hdr.mq.edu.au
 <style>
 
 body{ /* Normal  */
-      font-size: 18px;
       text-align: justify;
-      line-height: 1.6;
       font-family: "Times New Roman", Times, serif;
 }
 code.r{ /* Code block */
@@ -202,7 +200,8 @@ as.numeric("Hello")
 ## Data Structures
 
 
-###Vector 
+### Vector 
+
 When there are more than one number or letter stored. Use the combine function c() for that.
 
 ```{r}
@@ -665,7 +664,7 @@ knitr::include_graphics(here('inputs','ggplot2_masterpiece.png'))
 
 Before starting the ggplot, let's try a visualization using a function from the Base R the plot() function shows the association of each variable against the other one in a data handy for data with few number of variables to see if there are any patterns
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=4}
 
 exam_data<- read_csv(here::here("cleaned_data", "exam_data.csv"))
 
@@ -675,13 +674,13 @@ plot(x = exam_data$Anxiety, y = exam_data$Exam)
 
 The code also works without writing x and y, however, writing them is strongly recommended
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 
 plot(exam_data$Anxiety, exam_data$Exam)
 ```
 
 `ggplot`, the gg in ggplot stands for grammar of graphics. Grammar of graphics basically says any graphical representation of data, can be produced by a series of layers. You can think of a layer as a plastic transparency. Lets draw the same plot using ggplot. Always, mention the data we are going to work with.
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 ggplot(data = exam_data, aes(x = Exam, y = Anxiety))
 ```
 
@@ -690,19 +689,19 @@ ggplot(data = exam_data, aes(x = Exam, y = Anxiety))
 
 - Visual elements are known as geoms (short for 'geometric objects') in ggplot 2. When we define a layer, we have to tell R what geom we want displayed on that layer (do we want a bar, line dot, etc.?)
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 ggplot(data = exam_data, aes(x = Exam, y = Anxiety))+ geom_point()
 ```
 
 So, lets try some of them here like shape and size. Be careful with the + sign, if you clink enter for the next part of the code, the + sign should not go to the next line
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 ggplot(data = exam_data, aes(x = Exam, y = Anxiety))+
   geom_point(size = 2, shape = 8)
 ```
 
 The current plot is not very informative about the patterns for each gender.
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 ggplot(data = exam_data, aes(x = Exam, y = Anxiety, color = Gender))+
   geom_point(size = 2, shape = 10)
 
@@ -712,27 +711,27 @@ ggplot(data = exam_data, aes(x = Exam, y = Anxiety, color = Gender, shape = Gend
 
 Question: why the above code doesn't make any change?
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 ggplot(data = exam_data, aes(x = Exam, y = Anxiety, color = Gender, shape = Gender))+
   geom_point(size = 2)
 ```
 
 Can assign the first layer to a variable to reduce the length of codes for next layers.
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 My_graph <- ggplot(data = exam_data, aes(x = Exam, y = Anxiety))
 
 My_graph + geom_point()
 ```
 
 lets add a line to the current graph
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 My_graph + geom_point() + geom_smooth()
 ```
 
 Aesthetics can be set for all layers of the plot (i.e., defined in the plot as a whole) or can be set individually for each geom in a plot.
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 My_graph + geom_point(aes(color = Gender)) + geom_smooth()
 
 My_graph + geom_point(aes(color = Gender)) + geom_smooth(aes(color = Gender))
@@ -740,25 +739,25 @@ My_graph + geom_point(aes(color = Gender)) + geom_smooth(aes(color = Gender))
 
 The shaded area around the line is the 95% confidence interval around the line. We can switch this off by  adding `se = F` (which is short for 'standard error = False')
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 My_graph + geom_point() + geom_smooth(se = F)
 ```
 
 
 What if we want our line to be a direct line?
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 My_graph + geom_point() + geom_smooth(se = F, method = lm)
 
 ```
 How to change the labels of x and y axes?
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 My_graph + geom_point() + geom_smooth(se = F, method = lm) +
   labs(x = "Exam scores %", y = "Anxiety scores")
 ```
 
 Histograms are used to show distributions of variables while bar charts are used to compare variables. Histograms plot quantitative data with ranges of the data grouped into bins or intervals while bar charts plot categorical data.
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 #ggplot(data = exam_data, aes(x = Anxiety, y = Exam )) + geom_histogram()
 # the code above gives an error as geom_histogram can only have x or y axis in its aes()
 
@@ -774,12 +773,12 @@ ggplot(data = exam_data, aes(x = Anxiety)) + geom_histogram(bins = 31, fill = "g
 ```
 
 Let's stop using the My_graph variable and write the whole code from the start again for a bar chart
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 ggplot(data = exam_data, aes(x = Sleep_quality))+
   geom_bar()
 ```
 Because we want to plot a summary of the data (the mean) rather than the raw scores themselves, we have to use a stat.
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 ggplot(data = exam_data, aes(x = Sleep_quality, y = Exam, fill = Gender))+
   geom_bar(stat = "summary", fun = "mean")
 
@@ -790,7 +789,7 @@ ggplot(data = exam_data, aes(x = Sleep_quality, y = Exam, fill = Gender))+
 
 The other way to get the same plot that the code above gives, is using the stat_summary function that takes the following general form: `stat_summary(function = x, geom = y)`
 
-```{r message=F, warning=F, dpi= 300, fig.height=3, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=2, fig.width=4}
 ggplot(data = exam_data, aes(x = Sleep_quality, y = Exam, fill = Gender))+
   stat_summary(fun = mean, geom = "bar", position = "dodge")
 ```
@@ -802,7 +801,7 @@ How to combine multiple plots? How to combine multiple plots? We can use the `pa
 knitr::include_graphics(here('inputs','patchwork_1.jpg'))
 ```
 
-```{r message=F, warning=F, dpi= 300, fig.height=5, fig.width=5}
+```{r message=F, warning=F, dpi= 300, fig.height=5, fig.width=6}
 p1 = My_graph + geom_point(aes(color = Gender)) + geom_smooth()
 
 p2 = ggplot(data = exam_data, aes(x = Anxiety)) + geom_histogram(bins = 31)
