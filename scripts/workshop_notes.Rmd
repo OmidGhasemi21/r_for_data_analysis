@@ -940,7 +940,7 @@ And here, we save our plots to the `outputs` folder.
 ggsave(combined_plot_exp1, filename = here("outputs","combined_plot_exp1.png"), dpi=300, width = 12)
 ```
 
-
+- [A complete guide to ggplot](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
 
 # Descriptive Statistics
 

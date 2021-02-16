@@ -7,7 +7,7 @@ author:
   - name: "Mahdi Mazidi"
     affiliation: University of Western Australia
     email: mahdi.mazidisharafabadi@research.uwa.edu.au
-date: "12 February, 2021"
+date: "16 February, 2021"
 output: 
   html_document:
     keep_md: yes
@@ -633,37 +633,37 @@ tail(my_dataframe)
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 19.45338 </td>
+   <td style="text-align:right;"> 30.42391 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 42.34821 </td>
+   <td style="text-align:right;"> 31.39435 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 35.61285 </td>
+   <td style="text-align:right;"> 31.98380 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 25.17399 </td>
+   <td style="text-align:right;"> 30.26156 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 24.42101 </td>
+   <td style="text-align:right;"> 32.89160 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 27.48738 </td>
+   <td style="text-align:right;"> 30.58312 </td>
   </tr>
 </tbody>
 </table>
@@ -682,37 +682,37 @@ tail(my_dataframe)
    <td style="text-align:left;"> 195 </td>
    <td style="text-align:right;"> 195 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 27.49956 </td>
+   <td style="text-align:right;"> 18.54472 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 196 </td>
    <td style="text-align:right;"> 196 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 28.42176 </td>
+   <td style="text-align:right;"> 25.31502 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 197 </td>
    <td style="text-align:right;"> 197 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 28.92391 </td>
+   <td style="text-align:right;"> 22.52473 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 198 </td>
    <td style="text-align:right;"> 198 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 29.06204 </td>
+   <td style="text-align:right;"> 22.01121 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 199 </td>
    <td style="text-align:right;"> 199 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 27.61078 </td>
+   <td style="text-align:right;"> 29.19932 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 200 </td>
    <td style="text-align:right;"> 200 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 18.95131 </td>
+   <td style="text-align:right;"> 30.09011 </td>
   </tr>
 </tbody>
 </table>
@@ -725,7 +725,7 @@ my_dataframe[35, 3]
 ```
 
 ```
-## [1] 31.15347
+## [1] 19.96716
 ```
 
 * *Exercise*: How can we get all columns, but only for the first 10 participants?
@@ -747,52 +747,52 @@ my_dataframe[1:10, ]
   <tr>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 19.45338 </td>
+   <td style="text-align:right;"> 30.42391 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 42.34821 </td>
+   <td style="text-align:right;"> 31.39435 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 35.61285 </td>
+   <td style="text-align:right;"> 31.98380 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 25.17399 </td>
+   <td style="text-align:right;"> 30.26156 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 24.42101 </td>
+   <td style="text-align:right;"> 32.89160 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 27.48738 </td>
+   <td style="text-align:right;"> 30.58312 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 33.11080 </td>
+   <td style="text-align:right;"> 29.31386 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 42.36993 </td>
+   <td style="text-align:right;"> 31.86684 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 9 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 40.41996 </td>
+   <td style="text-align:right;"> 31.60194 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 10 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 23.41229 </td>
+   <td style="text-align:right;"> 28.17029 </td>
   </tr>
 </tbody>
 </table>
@@ -804,31 +804,31 @@ my_dataframe[ , 3]
 ```
 
 ```
-##   [1] 19.45338 42.34821 35.61285 25.17399 24.42101 27.48738 33.11080 42.36993
-##   [9] 40.41996 23.41229 28.24108 32.81045 25.70502 29.22300 32.27024 33.05726
-##  [17] 24.37990 31.37091 31.16245 28.76672 38.54995 22.87417 22.20308 23.74506
-##  [25] 25.12223 38.02695 28.44873 30.55478 36.07095 29.76718 37.62122 33.47683
-##  [33] 32.37533 31.40624 31.15347 34.65073 22.47355 27.59239 35.01169 36.09953
-##  [41] 29.29690 32.29629 31.98906 23.27326 27.44773 31.86654 17.90334 22.97421
-##  [49] 30.87948 29.53606 29.08800 30.08908 21.95537 35.25648 30.40872 30.87351
-##  [57] 23.57119 29.42636 32.90266 31.78335 35.53556 27.94127 28.05376 21.32260
-##  [65] 25.00423 19.52317 37.05042 29.95080 21.99706 26.90433 22.47090 31.14327
-##  [73] 40.54168 27.98746 28.14105 31.15181 30.93725 30.65365 23.85351 32.85104
-##  [81] 33.16058 32.15789 24.70513 24.71835 29.07822 29.34360 29.97579 24.19834
-##  [89] 27.12373 29.85477 27.23954 31.12225 31.72837 30.66292 28.12180 29.38940
-##  [97] 35.45928 35.13103 23.55602 21.51178 23.86999 24.08943 21.19567 23.76538
-## [105] 31.23768 20.12949 23.35748 25.77560 19.97935 36.95775 33.83174 27.06497
-## [113] 20.82996 16.90353 20.63556 22.35301 20.31938 28.19941 31.16086 14.80019
-## [121] 30.02522 28.20146 24.90908 17.37278 30.53754 25.74269 24.67774 19.84581
-## [129] 15.30539 24.30986 12.59414 21.31042 18.77066 25.84767 28.36952 18.72623
-## [137] 26.18819 16.69716 22.39854 23.14091 24.53845 29.56114 18.33816 30.06442
-## [145] 26.48275 21.59022 19.16012 27.35389 21.63158 18.79327 20.71436 20.73652
-## [153] 30.98289 29.92019 21.84922 24.98820 25.63485 28.40387 28.10618 27.49502
-## [161] 22.00292 31.93532 20.70760 26.42307 30.18167 15.52820 21.29023 19.23984
-## [169] 19.23642 20.05807 25.03167 31.89290 26.70301 23.68235 20.84122 17.86026
-## [177] 33.32782 30.41839 25.10713 23.05902 22.40902 27.36197 24.81034 22.85248
-## [185] 22.74278 20.66957 22.41073 19.05380 26.37348 24.48729 30.65553 26.59533
-## [193] 30.89649 20.92523 27.49956 28.42176 28.92391 29.06204 27.61078 18.95131
+##   [1] 30.42391 31.39435 31.98380 30.26156 32.89160 30.58313 29.31386 31.86684
+##   [9] 31.60194 28.17029 40.70102 31.00756 25.84319 29.56527 32.88131 17.93231
+##  [17] 28.13834 28.38068 29.21312 30.41091 24.42506 28.72800 32.28634 27.02297
+##  [25] 28.65416 36.01442 35.72138 27.42288 31.63057 34.75769 28.23678 23.25628
+##  [33] 29.95145 28.87311 19.96716 25.39401 46.97635 26.88618 28.89566 35.20675
+##  [41] 26.74658 26.21272 30.33895 32.62540 21.64545 23.72600 32.02974 33.69672
+##  [49] 37.39239 29.75127 34.12932 25.31246 30.94949 17.77188 24.35454 33.22516
+##  [57] 19.23332 30.87546 33.20793 30.50553 20.04208 41.22914 29.10625 33.77548
+##  [65] 29.33675 31.01131 32.29470 30.55776 31.00207 29.95526 30.04618 31.56003
+##  [73] 32.44361 29.62436 20.27625 31.37769 21.42085 37.07180 30.83059 30.90844
+##  [81] 27.85175 29.43705 26.01446 33.49888 24.77147 32.02480 30.51447 28.56813
+##  [89] 30.74553 31.14742 36.53496 24.67334 30.76875 38.65474 23.12777 32.82991
+##  [97] 22.45032 35.49847 29.66192 21.85724 23.21670 18.26624 27.45448 34.09305
+## [105] 30.46837 26.77456 25.37303 39.98304 26.29323 30.46605 20.37679 26.87346
+## [113] 20.11632 23.56563 33.03331 30.29873 26.43332 25.79077 24.43063 28.59376
+## [121] 27.90288 25.23165 19.69473 28.89037 26.06537 19.33005 24.58180 26.43273
+## [129] 31.75669 18.81263 13.07141 25.53940 34.57619 24.38474 18.68158 25.61714
+## [137] 29.46947 25.14800 31.91151 25.29593 29.32774 28.34083 33.82708 31.55684
+## [145] 28.46168 22.96394 24.18663 22.86743 27.04206 23.95114 21.81046 21.36594
+## [153] 22.17787 23.33292 33.63888 32.96656 26.29168 26.07104 28.96076 25.24093
+## [161] 18.95290 29.48124 19.74454 26.28502 27.13508 22.27233 27.23583 33.87589
+## [169] 23.84769 33.74727 20.97366 15.34242 22.37948 19.52661 27.65811 29.67194
+## [177] 30.54342 23.39429 26.72360 28.42296 25.03079 23.70069 27.67194 26.06394
+## [185] 32.07253 27.28652 25.06557 22.95932 24.46923 36.44290 25.86616 18.43971
+## [193] 34.58480 33.33262 18.54472 25.31502 22.52473 22.01121 29.19932 30.09011
 ```
 
 Another easier way for selecting particular items is using their names that is more helpful than number of the rows in large data sets:
@@ -1907,7 +1907,7 @@ And here, we save our plots to the `outputs` folder.
 ggsave(combined_plot_exp1, filename = here("outputs","combined_plot_exp1.png"), dpi=300, width = 12)
 ```
 
-
+- [A complete guide to ggplot](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)
 
 # Descriptive Statistics
 
