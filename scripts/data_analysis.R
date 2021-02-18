@@ -29,7 +29,7 @@ data_exp1 <- data_exp1_orig%>%
 
 aggregated_data_exp1 <- data_exp1 %>%
   group_by(stage, group) %>%
-  mutate(truth_estimate = mean(truth_estimate)) %>%
+  mutate(depression_score = mean(depression_score)) %>%
   ungroup()
 
 

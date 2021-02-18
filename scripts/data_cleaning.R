@@ -15,22 +15,22 @@ unicef_data <- read_csv(here("cleaned_data","unicef_u5mr.csv"))
 
 
 # Pick 3 columns: subject, age, gender
-selected_data <- select(raw_data, subject, age, gender)
+select(raw_data, subject, age, gender)
 
 # Pick male participants
-fil_male <- filter(raw_data, gender == "Male")
-fil_male_and_g25 <- filter(raw_data, gender == "Male" & age > 25 )
-fil_male_or_g25 <- filter(raw_data, gender == "Male" | age > 25 )
+filter(raw_data, gender == "Male")
+filter(raw_data, gender == "Male" & age > 25 )
+filter(raw_data, gender == "Male" | age > 25 )
 
 # order participants based on their age
-arranged_data <- arrange(raw_data, age)
-arranged_desc <- arrange(raw_data, desc(age))
+arrange(raw_data, age)
+arrange(raw_data, desc(age))
 
 # Create a column to show if the participant has finished the task or not
 mutated_data <- mutate (raw_data, finished= case_when(progress==100~ "Yes",T~ "No"))
 
-# summarize participants age and sd:
-summarised_data <- summarise(raw_data, mean= mean(age, na.rm=T))
+# summarize participants age:
+summarise(raw_data, mean= mean(age, na.rm=T))
 
 # pipe functions %>%
 raw_data %>% 
@@ -39,18 +39,17 @@ raw_data %>%
 raw_data %>% 
   summarise(mean= mean(age, na.rm=T))
 
+
 # calculate the mean of younger than 25 participants only
 raw_data %>% 
   filter (age < 25) %>%
-  summarise(mean= mean(age, na.rm=T),
-            sd= sd (age, na.rm=T))
+  summarise(mean= mean(age, na.rm=T))
 
 # calculate the mean of younger than 25 participants only for each gender separately
 raw_data %>% 
   filter (age < 25) %>%
   group_by(gender) %>%
-  summarise(mean= mean(age, na.rm=T),
-            sd= sd (age, na.rm=T)) %>%
+  summarise(mean= mean(age, na.rm=T)) %>%
   ungroup ()
 
 # exercise1: Create a column to show if participant is older than 23 or not and then calculate 
