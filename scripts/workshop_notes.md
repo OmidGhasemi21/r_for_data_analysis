@@ -7,7 +7,7 @@ author:
   - name: "Mahdi Mazidi"
     affiliation: University of Western Australia
     email: mahdi.mazidisharafabadi@research.uwa.edu.au
-date: "16 February, 2021"
+date: "19 February, 2021"
 output: 
   html_document:
     keep_md: yes
@@ -633,37 +633,37 @@ tail(my_dataframe)
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.42391 </td>
+   <td style="text-align:right;"> 25.67751 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.39435 </td>
+   <td style="text-align:right;"> 30.50688 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.98380 </td>
+   <td style="text-align:right;"> 27.85405 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.26156 </td>
+   <td style="text-align:right;"> 31.18748 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 32.89160 </td>
+   <td style="text-align:right;"> 26.43779 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.58312 </td>
+   <td style="text-align:right;"> 29.94332 </td>
   </tr>
 </tbody>
 </table>
@@ -682,37 +682,37 @@ tail(my_dataframe)
    <td style="text-align:left;"> 195 </td>
    <td style="text-align:right;"> 195 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 18.54472 </td>
+   <td style="text-align:right;"> 37.82939 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 196 </td>
    <td style="text-align:right;"> 196 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 25.31502 </td>
+   <td style="text-align:right;"> 29.60533 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 197 </td>
    <td style="text-align:right;"> 197 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 22.52473 </td>
+   <td style="text-align:right;"> 26.16398 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 198 </td>
    <td style="text-align:right;"> 198 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 22.01121 </td>
+   <td style="text-align:right;"> 23.64795 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 199 </td>
    <td style="text-align:right;"> 199 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 29.19932 </td>
+   <td style="text-align:right;"> 31.70907 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 200 </td>
    <td style="text-align:right;"> 200 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 30.09011 </td>
+   <td style="text-align:right;"> 35.42236 </td>
   </tr>
 </tbody>
 </table>
@@ -725,7 +725,7 @@ my_dataframe[35, 3]
 ```
 
 ```
-## [1] 19.96716
+## [1] 29.57839
 ```
 
 * *Exercise*: How can we get all columns, but only for the first 10 participants?
@@ -747,52 +747,52 @@ my_dataframe[1:10, ]
   <tr>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.42391 </td>
+   <td style="text-align:right;"> 25.67751 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.39435 </td>
+   <td style="text-align:right;"> 30.50688 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.98380 </td>
+   <td style="text-align:right;"> 27.85405 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.26156 </td>
+   <td style="text-align:right;"> 31.18748 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 32.89160 </td>
+   <td style="text-align:right;"> 26.43779 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.58312 </td>
+   <td style="text-align:right;"> 29.94332 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 29.31386 </td>
+   <td style="text-align:right;"> 31.88499 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.86684 </td>
+   <td style="text-align:right;"> 24.30275 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 9 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.60194 </td>
+   <td style="text-align:right;"> 29.62321 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 10 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 28.17029 </td>
+   <td style="text-align:right;"> 25.47421 </td>
   </tr>
 </tbody>
 </table>
@@ -804,31 +804,31 @@ my_dataframe[ , 3]
 ```
 
 ```
-##   [1] 30.42391 31.39435 31.98380 30.26156 32.89160 30.58313 29.31386 31.86684
-##   [9] 31.60194 28.17029 40.70102 31.00756 25.84319 29.56527 32.88131 17.93231
-##  [17] 28.13834 28.38068 29.21312 30.41091 24.42506 28.72800 32.28634 27.02297
-##  [25] 28.65416 36.01442 35.72138 27.42288 31.63057 34.75769 28.23678 23.25628
-##  [33] 29.95145 28.87311 19.96716 25.39401 46.97635 26.88618 28.89566 35.20675
-##  [41] 26.74658 26.21272 30.33895 32.62540 21.64545 23.72600 32.02974 33.69672
-##  [49] 37.39239 29.75127 34.12932 25.31246 30.94949 17.77188 24.35454 33.22516
-##  [57] 19.23332 30.87546 33.20793 30.50553 20.04208 41.22914 29.10625 33.77548
-##  [65] 29.33675 31.01131 32.29470 30.55776 31.00207 29.95526 30.04618 31.56003
-##  [73] 32.44361 29.62436 20.27625 31.37769 21.42085 37.07180 30.83059 30.90844
-##  [81] 27.85175 29.43705 26.01446 33.49888 24.77147 32.02480 30.51447 28.56813
-##  [89] 30.74553 31.14742 36.53496 24.67334 30.76875 38.65474 23.12777 32.82991
-##  [97] 22.45032 35.49847 29.66192 21.85724 23.21670 18.26624 27.45448 34.09305
-## [105] 30.46837 26.77456 25.37303 39.98304 26.29323 30.46605 20.37679 26.87346
-## [113] 20.11632 23.56563 33.03331 30.29873 26.43332 25.79077 24.43063 28.59376
-## [121] 27.90288 25.23165 19.69473 28.89037 26.06537 19.33005 24.58180 26.43273
-## [129] 31.75669 18.81263 13.07141 25.53940 34.57619 24.38474 18.68158 25.61714
-## [137] 29.46947 25.14800 31.91151 25.29593 29.32774 28.34083 33.82708 31.55684
-## [145] 28.46168 22.96394 24.18663 22.86743 27.04206 23.95114 21.81046 21.36594
-## [153] 22.17787 23.33292 33.63888 32.96656 26.29168 26.07104 28.96076 25.24093
-## [161] 18.95290 29.48124 19.74454 26.28502 27.13508 22.27233 27.23583 33.87589
-## [169] 23.84769 33.74727 20.97366 15.34242 22.37948 19.52661 27.65811 29.67194
-## [177] 30.54342 23.39429 26.72360 28.42296 25.03079 23.70069 27.67194 26.06394
-## [185] 32.07253 27.28652 25.06557 22.95932 24.46923 36.44290 25.86616 18.43971
-## [193] 34.58480 33.33262 18.54472 25.31502 22.52473 22.01121 29.19932 30.09011
+##   [1] 25.67751 30.50688 27.85405 31.18748 26.43779 29.94332 31.88499 24.30275
+##   [9] 29.62321 25.47421 28.67835 44.49822 38.95770 26.71795 32.86743 42.92951
+##  [17] 39.43184 25.28679 33.79008 26.63997 30.29671 29.71972 37.59836 25.21335
+##  [25] 23.60956 25.40918 32.97853 31.19940 33.52826 23.30590 34.06822 28.86365
+##  [33] 28.68556 24.65501 29.57839 33.65160 34.34322 34.88337 33.18487 26.96075
+##  [41] 24.85969 30.39736 28.99848 35.35618 33.59227 24.40365 33.69494 39.44119
+##  [49] 25.38689 17.62718 29.38772 36.28467 32.72525 32.65730 33.28753 20.59795
+##  [57] 29.39656 30.47841 29.72631 30.00521 28.40262 45.39311 33.73790 26.12625
+##  [65] 23.75714 36.57074 30.14156 24.95673 27.88779 25.00442 25.27760 25.44098
+##  [73] 26.21632 28.23137 38.68072 36.40383 38.53229 30.75424 25.71612 29.67645
+##  [81] 23.35774 41.43341 35.42844 27.04721 36.19928 33.90553 31.23478 31.37820
+##  [89] 23.47448 35.14562 24.35033 26.32279 28.11685 25.02537 40.15536 28.78169
+##  [97] 24.27265 34.10561 32.77914 28.53924 24.44748 25.91238 25.41619 32.77701
+## [105] 26.24443 20.20428 14.95122 33.18519 22.92441 23.41872 28.23043 26.70726
+## [113] 19.49191 21.57979 21.17556 15.86531 20.19090 28.84964 24.95565 17.15686
+## [121] 36.20514 21.61509 29.94009 24.55726 29.75400 29.53863 28.62965 24.30133
+## [129] 23.59685 29.22331 20.96769 27.23252 26.04409 28.03235 26.88758 31.41231
+## [137] 16.46511 28.84658 22.50181 25.28338 21.68744 21.42948 21.21029 26.07754
+## [145] 24.13913 33.76351 24.47093 32.22514 36.42094 23.74251 27.21891 35.39804
+## [153] 26.97973 25.25728 14.17212 24.51770 28.84445 19.45879 29.29256 26.29966
+## [161] 23.45768 32.36189 29.09744 22.18670 25.16793 16.59150 25.17464 22.56768
+## [169] 20.15450 31.92731 24.13743 25.32165 24.07822 24.98594 21.81218 29.17458
+## [177] 18.59470 34.26587 31.61718 22.37180 37.62753 21.69863 32.74779 32.97598
+## [185] 34.63547 21.96093 24.07853 35.22956 22.56170 23.40207 31.76184 27.97739
+## [193] 25.03920 19.07650 37.82939 29.60533 26.16398 23.64795 31.70907 35.42236
 ```
 
 Another easier way for selecting particular items is using their names that is more helpful than number of the rows in large data sets:
@@ -2465,210 +2465,6 @@ memory_data %>% group_by(time) %>%
 </tbody>
 </table>
 
-Now, let's describe our experiment data:
-
-
-```r
-data_exp1_orig <- read_csv(here("cleaned_data","cleaned_data_exp1.csv"))
-```
-
-How many participants in total?
-
-
-```r
-data_exp1 %>% summarise(n= n_distinct(subject))
-```
-
-<div class="kable-table">
-
-<table>
- <thead>
-  <tr>
-   <th style="text-align:right;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:right;"> 131 </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-
-
-
-
-How many participants do we have in each group?
-
-```r
-data_exp1 %>% 
-  group_by(subject) %>% 
-  filter(row_number()==1) %>% 
-  ungroup () %>% 
-  group_by(group) %>% 
-  count() 
-```
-
-<table class="table table-striped table-bordered table-condensed" style="margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> group </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> n </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> CBT </td>
-   <td style="text-align:right;"> 66 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Psychodynamic </td>
-   <td style="text-align:right;"> 65 </td>
-  </tr>
-</tbody>
-</table>
-
-Find the mean and sd for numeric variables using base R `summary` function:
-
-
-```r
-data_exp1 %>% 
-  group_by(subject) %>% 
-  filter(row_number()==1) %>% 
-  ungroup () %>%
-  summary()
-```
-
-```
-##     subject         age           gender                    group   
-##  subj1  :  1   Min.   :16.00   Length:131         CBT          :66  
-##  subj10 :  1   1st Qu.:18.00   Class :character   Psychodynamic:65  
-##  subj101:  1   Median :19.00   Mode  :character                     
-##  subj102:  1   Mean   :21.15                                        
-##  subj103:  1   3rd Qu.:20.00                                        
-##  subj104:  1   Max.   :63.00                                        
-##  (Other):125                                                        
-##     stage     depression_score anxiety_total  sleep_quality   
-##  stage1:131   Min.   :  1.00   Min.   :19.0   Min.   : 0.000  
-##  stage2:  0   1st Qu.: 29.00   1st Qu.:33.5   1st Qu.: 8.000  
-##  stage3:  0   Median : 51.00   Median :39.0   Median :10.000  
-##  stage4:  0   Mean   : 53.33   Mean   :38.2   Mean   : 8.779  
-##  stage5:  0   3rd Qu.: 79.00   3rd Qu.:43.0   3rd Qu.:10.000  
-##               Max.   :101.00   Max.   :48.0   Max.   :11.000  
-##                                                               
-##  life_satisfaction
-##  Min.   : 4.00    
-##  1st Qu.: 8.00    
-##  Median : 8.00    
-##  Mean   : 8.45    
-##  3rd Qu.: 9.00    
-##  Max.   :12.00    
-## 
-```
-
-Alternatively, we can use `skimr` library:
-
-```r
-data_exp1 %>% 
-  group_by(subject) %>% 
-  filter(row_number()==1) %>% 
-  ungroup () %>% 
-  dplyr::select (age, depression_score, anxiety_total, sleep_quality, life_satisfaction) %>% 
-  skimr::skim()
-```
-
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:780px; "><table class="table table-striped table-bordered table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> skim_type </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> skim_variable </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> n_missing </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> complete_rate </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> numeric.mean </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> numeric.sd </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> numeric.p0 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> numeric.p25 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> numeric.p50 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> numeric.p75 </th>
-   <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> numeric.p100 </th>
-   <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> numeric.hist </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> numeric </td>
-   <td style="text-align:left;"> age </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 21.152672 </td>
-   <td style="text-align:right;"> 6.515630 </td>
-   <td style="text-align:right;"> 16 </td>
-   <td style="text-align:right;"> 18.0 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 20 </td>
-   <td style="text-align:right;"> 63 </td>
-   <td style="text-align:left;"> ▇▁▁▁▁ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> numeric </td>
-   <td style="text-align:left;"> depression_score </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 53.328244 </td>
-   <td style="text-align:right;"> 27.967685 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 29.0 </td>
-   <td style="text-align:right;"> 51 </td>
-   <td style="text-align:right;"> 79 </td>
-   <td style="text-align:right;"> 101 </td>
-   <td style="text-align:left;"> ▅▇▅▇▅ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> numeric </td>
-   <td style="text-align:left;"> anxiety_total </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 38.198473 </td>
-   <td style="text-align:right;"> 6.153698 </td>
-   <td style="text-align:right;"> 19 </td>
-   <td style="text-align:right;"> 33.5 </td>
-   <td style="text-align:right;"> 39 </td>
-   <td style="text-align:right;"> 43 </td>
-   <td style="text-align:right;"> 48 </td>
-   <td style="text-align:left;"> ▁▂▇▇▆ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> numeric </td>
-   <td style="text-align:left;"> sleep_quality </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8.778626 </td>
-   <td style="text-align:right;"> 2.274576 </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 8.0 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 10 </td>
-   <td style="text-align:right;"> 11 </td>
-   <td style="text-align:left;"> ▁▁▁▂▇ </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> numeric </td>
-   <td style="text-align:left;"> life_satisfaction </td>
-   <td style="text-align:right;"> 0 </td>
-   <td style="text-align:right;"> 1 </td>
-   <td style="text-align:right;"> 8.450382 </td>
-   <td style="text-align:right;"> 1.683466 </td>
-   <td style="text-align:right;"> 4 </td>
-   <td style="text-align:right;"> 8.0 </td>
-   <td style="text-align:right;"> 8 </td>
-   <td style="text-align:right;"> 9 </td>
-   <td style="text-align:right;"> 12 </td>
-   <td style="text-align:left;"> ▁▅▇▆▃ </td>
-  </tr>
-</tbody>
-</table></div>
-
 
 * *Exercise*: For this exercise, we use a dataset of one of my own studies. In this study, we asked participants to guess the physical brightness of reasoning arguments and then we gave a cognitive ability test. (See the original study [here](https://osf.io/ebxnf/)). Open `ghasemi_brightness_exp4.csv` file and answer to the following questions:
 
@@ -3178,7 +2974,7 @@ afex_plot(aov_m1, x = "stage", trace = "group", error='between',
   scale_fill_simpsons()
 ```
 
-<img src="workshop_notes_files/figure-html/unnamed-chunk-105-1.png" style="display: block; margin: auto;" />
+<img src="workshop_notes_files/figure-html/unnamed-chunk-97-1.png" style="display: block; margin: auto;" />
 
 
 If you are interested in this topic, check out this nice tutorial about [using afex to run ANOVA](https://cran.r-project.org/web/packages/afex/vignettes/afex_anova_example.html), and also this interesting tutorial on the [emmeans package](https://aosmith.rbind.io/2019/03/25/getting-started-with-emmeans/).
@@ -3311,7 +3107,7 @@ narcissism_data_cor %>%
 </tbody>
 </table>
 
-<img src="workshop_notes_files/figure-html/unnamed-chunk-110-1.png" style="display: block; margin: auto;" /><table class="table table-striped table-bordered table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<img src="workshop_notes_files/figure-html/unnamed-chunk-102-1.png" style="display: block; margin: auto;" /><table class="table table-striped table-bordered table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
  <thead>
   <tr>
    <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>

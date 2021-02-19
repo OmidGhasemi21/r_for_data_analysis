@@ -16,47 +16,35 @@ options(scipen=999) # turn off scientific notations
 # --------------- Descriptive Statistics ----------------- #
 # -------------------------------------------------------- #
 
-data_exp1_orig <- read_csv(here("cleaned_data","cleaned_data_exp1.csv"))
+# data_exp1_orig <- read_csv(here("cleaned_data","cleaned_data_exp1.csv"))
+# 
+# 
+# data_exp1 <- data_exp1_orig%>% 
+#   #mutate_if(is.character, factor) %>%
+#   mutate(subject= factor(subject), # convert all characters to factor
+#          group = factor(group),
+#          stage = factor(stage))
+# 
+# 
+# 
+# aggregated_data_exp1 <- data_exp1 %>%
+#   group_by(stage, group) %>%
+#   mutate(depression_score = mean(depression_score)) %>%
+#   ungroup()
+# 
+# 
+# # how many participants in total? 131
+# data_exp1 %>% summarise(n= n_distinct(subject))
+# 
+# # how many participants in each group?
+# data_exp1 %>% group_by(subject) %>% filter(row_number()==1) %>% ungroup () %>% group_by(group) %>% count()
 
-
-data_exp1 <- data_exp1_orig%>% 
-  #mutate_if(is.character, factor) %>%
-  mutate(subject= factor(subject), # convert all characters to factor
-         group = factor(group),
-         stage = factor(stage))
-
-
-
-aggregated_data_exp1 <- data_exp1 %>%
-  group_by(stage, group) %>%
-  mutate(depression_score = mean(depression_score)) %>%
-  ungroup()
-
-
-# how many participants in total? 131
-data_exp1 %>% summarise(n= n_distinct(subject))
-
-# how many participants in each group?
-data_exp1 %>% group_by(subject) %>% filter(row_number()==1) %>% ungroup () %>% group_by(group) %>% count()
-
-# base R summary
-data_exp1 %>% 
-  group_by(subject) %>% 
-  filter(row_number()==1) %>% 
-  ungroup () %>%
-  summary()
-
-# skimr library
-data_exp1 %>% 
-  group_by(subject) %>% 
-  filter(row_number()==1) %>% 
-  ungroup () %>% 
-  dplyr::select (age, depression_score, anxiety_total, sleep_quality, life_satisfaction) %>% 
-  skimr::skim()
 
 
 narcissism_data <- read_csv(here("cleaned_data","narcissism_data.csv"))
+narcissism_data %>% summary()
 narcissism_data %>% skimr::skim()
+narcissism_data %>% psych::describe()
 
 
 ### Exercise
@@ -130,6 +118,23 @@ t.test(confident~back_down, data = john_data, paired=FALSE)
 ############## ----------- ANOVA  -------------################
 
 
+data_exp1 <- read_csv(here("cleaned_data","cleaned_data_exp1.csv"))
+
+str(data_exp1)
+
+data_exp1 %>% group_by(group) %>% skimr::skim()
+data_exp1 %>% group_by(stage) %>% skimr::skim()
+
+data_exp1 %>%
+  group_by(stage, group) %>%
+  mutate(depression_score = mean(depression_score)) %>%
+  ungroup() %>%
+  ggplot(aes(x=factor(stage), y= depression_score, group= group, color= group)) +
+  geom_line(aes(linetype= group)) +
+  geom_point(size= 5)
+
+
+
 aov_m1 <- aov_car (depression_score ~ group*stage +
                      Error(subject/stage), data = data_exp1)  
 
@@ -141,7 +146,9 @@ pairs(emmeans(aov_m1, 'stage'), adjust= 'holm')
 emmeans(aov_m1, "group", by= "stage")# interaction
 update(pairs(emmeans(aov_m1, "group", by= "stage")), by = NULL, adjust = "holm") # interaction
 
-
+data_exp1 %>% group_by(group) %>% skimr::skim()
+  
+  
 afex_plot(aov_m1, x = "stage", trace = "group", error='between') + theme_bw()
 
 afex_plot(aov_m1, x = "stage", trace = "group", error='between',
