@@ -633,37 +633,37 @@ tail(my_dataframe)
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 25.67751 </td>
+   <td style="text-align:right;"> 35.59862 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.50688 </td>
+   <td style="text-align:right;"> 36.62962 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 27.85405 </td>
+   <td style="text-align:right;"> 29.01446 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.18748 </td>
+   <td style="text-align:right;"> 22.71264 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 26.43779 </td>
+   <td style="text-align:right;"> 33.70909 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 29.94332 </td>
+   <td style="text-align:right;"> 35.58150 </td>
   </tr>
 </tbody>
 </table>
@@ -682,37 +682,37 @@ tail(my_dataframe)
    <td style="text-align:left;"> 195 </td>
    <td style="text-align:right;"> 195 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 37.82939 </td>
+   <td style="text-align:right;"> 19.73908 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 196 </td>
    <td style="text-align:right;"> 196 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 29.60533 </td>
+   <td style="text-align:right;"> 23.20115 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 197 </td>
    <td style="text-align:right;"> 197 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 26.16398 </td>
+   <td style="text-align:right;"> 24.25496 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 198 </td>
    <td style="text-align:right;"> 198 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 23.64795 </td>
+   <td style="text-align:right;"> 31.60629 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 199 </td>
    <td style="text-align:right;"> 199 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 31.70907 </td>
+   <td style="text-align:right;"> 14.19786 </td>
   </tr>
   <tr>
    <td style="text-align:left;"> 200 </td>
    <td style="text-align:right;"> 200 </td>
    <td style="text-align:left;"> Medication </td>
-   <td style="text-align:right;"> 35.42236 </td>
+   <td style="text-align:right;"> 33.20383 </td>
   </tr>
 </tbody>
 </table>
@@ -725,7 +725,7 @@ my_dataframe[35, 3]
 ```
 
 ```
-## [1] 29.57839
+## [1] 39.75112
 ```
 
 * *Exercise*: How can we get all columns, but only for the first 10 participants?
@@ -747,52 +747,52 @@ my_dataframe[1:10, ]
   <tr>
    <td style="text-align:right;"> 1 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 25.67751 </td>
+   <td style="text-align:right;"> 35.59862 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 2 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 30.50688 </td>
+   <td style="text-align:right;"> 36.62962 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 3 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 27.85405 </td>
+   <td style="text-align:right;"> 29.01446 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 4 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.18748 </td>
+   <td style="text-align:right;"> 22.71264 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 5 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 26.43779 </td>
+   <td style="text-align:right;"> 33.70909 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 6 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 29.94332 </td>
+   <td style="text-align:right;"> 35.58150 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 7 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 31.88499 </td>
+   <td style="text-align:right;"> 26.91184 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 8 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 24.30275 </td>
+   <td style="text-align:right;"> 24.35061 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 9 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 29.62321 </td>
+   <td style="text-align:right;"> 30.09706 </td>
   </tr>
   <tr>
    <td style="text-align:right;"> 10 </td>
    <td style="text-align:left;"> Psychotherapy </td>
-   <td style="text-align:right;"> 25.47421 </td>
+   <td style="text-align:right;"> 28.20006 </td>
   </tr>
 </tbody>
 </table>
@@ -804,31 +804,31 @@ my_dataframe[ , 3]
 ```
 
 ```
-##   [1] 25.67751 30.50688 27.85405 31.18748 26.43779 29.94332 31.88499 24.30275
-##   [9] 29.62321 25.47421 28.67835 44.49822 38.95770 26.71795 32.86743 42.92951
-##  [17] 39.43184 25.28679 33.79008 26.63997 30.29671 29.71972 37.59836 25.21335
-##  [25] 23.60956 25.40918 32.97853 31.19940 33.52826 23.30590 34.06822 28.86365
-##  [33] 28.68556 24.65501 29.57839 33.65160 34.34322 34.88337 33.18487 26.96075
-##  [41] 24.85969 30.39736 28.99848 35.35618 33.59227 24.40365 33.69494 39.44119
-##  [49] 25.38689 17.62718 29.38772 36.28467 32.72525 32.65730 33.28753 20.59795
-##  [57] 29.39656 30.47841 29.72631 30.00521 28.40262 45.39311 33.73790 26.12625
-##  [65] 23.75714 36.57074 30.14156 24.95673 27.88779 25.00442 25.27760 25.44098
-##  [73] 26.21632 28.23137 38.68072 36.40383 38.53229 30.75424 25.71612 29.67645
-##  [81] 23.35774 41.43341 35.42844 27.04721 36.19928 33.90553 31.23478 31.37820
-##  [89] 23.47448 35.14562 24.35033 26.32279 28.11685 25.02537 40.15536 28.78169
-##  [97] 24.27265 34.10561 32.77914 28.53924 24.44748 25.91238 25.41619 32.77701
-## [105] 26.24443 20.20428 14.95122 33.18519 22.92441 23.41872 28.23043 26.70726
-## [113] 19.49191 21.57979 21.17556 15.86531 20.19090 28.84964 24.95565 17.15686
-## [121] 36.20514 21.61509 29.94009 24.55726 29.75400 29.53863 28.62965 24.30133
-## [129] 23.59685 29.22331 20.96769 27.23252 26.04409 28.03235 26.88758 31.41231
-## [137] 16.46511 28.84658 22.50181 25.28338 21.68744 21.42948 21.21029 26.07754
-## [145] 24.13913 33.76351 24.47093 32.22514 36.42094 23.74251 27.21891 35.39804
-## [153] 26.97973 25.25728 14.17212 24.51770 28.84445 19.45879 29.29256 26.29966
-## [161] 23.45768 32.36189 29.09744 22.18670 25.16793 16.59150 25.17464 22.56768
-## [169] 20.15450 31.92731 24.13743 25.32165 24.07822 24.98594 21.81218 29.17458
-## [177] 18.59470 34.26587 31.61718 22.37180 37.62753 21.69863 32.74779 32.97598
-## [185] 34.63547 21.96093 24.07853 35.22956 22.56170 23.40207 31.76184 27.97739
-## [193] 25.03920 19.07650 37.82939 29.60533 26.16398 23.64795 31.70907 35.42236
+##   [1] 35.59862 36.62962 29.01446 22.71264 33.70909 35.58150 26.91184 24.35061
+##   [9] 30.09706 28.20006 32.09037 25.15059 25.23804 35.73875 42.61423 32.24317
+##  [17] 24.60450 33.02065 36.51803 33.96189 43.34802 31.97126 31.66812 28.79656
+##  [25] 25.97128 33.38626 30.57732 23.27546 19.68985 28.17951 29.98973 27.16092
+##  [33] 31.99661 26.27210 39.75112 27.47717 16.54230 21.75016 33.36571 36.44900
+##  [41] 30.70574 29.09672 29.43279 22.77227 20.96891 36.73037 28.83073 31.67700
+##  [49] 34.54895 28.85963 27.09316 36.16230 24.35933 23.88968 34.71001 24.40981
+##  [57] 32.97373 33.39629 18.96927 35.96424 27.82566 21.47080 30.61677 32.20519
+##  [65] 35.46101 26.53701 39.78074 30.75453 20.34907 30.20975 36.76597 32.91871
+##  [73] 25.03069 35.65879 27.68528 36.40671 27.88243 28.90775 25.83936 41.69814
+##  [81] 44.44514 27.74542 28.13034 23.14361 20.74980 31.84590 36.95674 32.19458
+##  [89] 27.70576 34.45078 31.68835 29.76735 30.29011 30.04594 28.00025 34.60662
+##  [97] 25.64952 31.98999 29.15195 28.50349 24.16872 19.86797 19.86773 28.39305
+## [105] 22.58449 21.74178 30.88721 21.84749 28.48663 22.40085 35.49097 28.02832
+## [113] 31.35924 23.76777 21.67946 14.10546 22.86193 27.90598 24.61302 23.26970
+## [121] 15.32896 30.49925 21.78486 23.99288 25.47913 34.21774 24.12370 26.81657
+## [129] 29.65434 18.07262 28.98266 25.36519 31.33496 15.23519 24.89588 17.40844
+## [137] 35.31352 19.03414 30.53285 20.96974 36.13117 25.31783 24.70286 24.30349
+## [145] 23.77750 25.06979 16.42690 29.35791 34.99587 16.98754 26.94997 28.67525
+## [153] 22.93114 18.99034 13.04770 27.22615 22.70794 27.14391 15.72608 28.32175
+## [161] 17.88373 31.00352 20.02655 31.80458 29.67562 23.72706 30.19105 25.62265
+## [169] 15.54247 19.61728 25.53547 28.17935 30.10152 35.65953 16.25308 19.49600
+## [177] 23.54306 22.12626 22.47110 27.36396 28.10063 27.52071 27.52407 27.88606
+## [185] 16.75499 29.03299 24.35035 30.20982 27.80097 18.65039 24.78246 24.88516
+## [193] 26.85609 33.23869 19.73908 23.20115 24.25496 31.60629 14.19786 33.20383
 ```
 
 Another easier way for selecting particular items is using their names that is more helpful than number of the rows in large data sets:
@@ -2466,7 +2466,7 @@ memory_data %>% group_by(time) %>%
 </table>
 
 
-* *Exercise*: For this exercise, we use a dataset of one of my own studies. In this study, we asked participants to guess the physical brightness of reasoning arguments and then we gave a cognitive ability test. (See the original study [here](https://osf.io/ebxnf/)). Open `ghasemi_brightness_exp4.csv` file and answer to the following questions:
+* *Exercise*: For this exercise, we use a dataset of one of my own studies. In this study, we asked participants to guess the physical brightness of some reasoning arguments and then we gave a cognitive ability test. (See the original study [here](https://osf.io/ebxnf/)). Open `ghasemi_brightness_exp4.csv` file and answer to the following questions:
 
 1. How many participants did we test in total?
 2. Find out how many male and female we tested.

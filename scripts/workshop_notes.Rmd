@@ -970,7 +970,7 @@ memory_data %>% group_by(time) %>%
 ```
 
 
-* *Exercise*: For this exercise, we use a dataset of one of my own studies. In this study, we asked participants to guess the physical brightness of reasoning arguments and then we gave a cognitive ability test. (See the original study [here](https://osf.io/ebxnf/)). Open `ghasemi_brightness_exp4.csv` file and answer to the following questions:
+* *Exercise*: For this exercise, we use a dataset of one of my own studies. In this study, we asked participants to guess the physical brightness of some reasoning arguments and then we gave a cognitive ability test. (See the original study [here](https://osf.io/ebxnf/)). Open `ghasemi_brightness_exp4.csv` file and answer to the following questions:
 
 1. How many participants did we test in total?
 2. Find out how many male and female we tested.
